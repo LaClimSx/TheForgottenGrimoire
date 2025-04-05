@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 3ee0e5c47b669ce41950ce472c55dcc1
+AssetOrigin:
+  serializedVersion: 1
+  productId: 3996
+  packageName: Grimoire Style Book
+  packageVersion: 1.0
+  assetPath: Assets/Grimoire/Materials/book.tif
+  uploadId: 26689
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,10 +76,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 3
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -128,10 +135,3 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 3996
-  packageName: Grimoire Style Book
-  packageVersion: 1.0
-  assetPath: Assets/Grimoire/Materials/book.tif
-  uploadId: 26689
