@@ -11,12 +11,12 @@ public class Grimoire : MonoBehaviour
 
     private void Start()
     {
-        //float angleY = target.eulerAngles.y;
+        float angleY = _target.eulerAngles.y;
         // Smooth follow
-        //transform.position = GetTargetPosition(angleY);
+        transform.position = GetTargetPosition(angleY);
 
         // Make the book face the same way as the player
-        //transform.rotation = Quaternion.Euler(angle.x, angle.y + angleY, angle.z);
+        transform.rotation = Quaternion.Euler(angle.x, angle.y + angleY, angle.z);
     }
 
     void Update()
