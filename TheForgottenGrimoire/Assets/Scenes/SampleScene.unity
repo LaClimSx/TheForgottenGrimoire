@@ -55903,6 +55903,10 @@ PrefabInstance:
       propertyPath: m_AffordanceStateProvider
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8687133887425657957, guid: 77e7f26a39924ac40813eeac3de97860, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 134217728
+      objectReference: {fileID: 0}
     - target: {fileID: 8716398163139419702, guid: 77e7f26a39924ac40813eeac3de97860, type: 3}
       propertyPath: m_AffordanceStateProvider
       value: 
