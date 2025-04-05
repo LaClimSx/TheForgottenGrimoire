@@ -19,10 +19,16 @@ public class AnimateHandController : MonoBehaviour
 
     void Update()
     {
+        AnimateGrip();
+        AnimateTrigger();
+    }
+
+    private void AnimateGrip()
+    {
         _gripValue = gripInputActionReference.action.ReadValue<float>();
         _handAnimator.SetFloat("Grip", _gripValue);
     }
-
+    
     private void AnimateTrigger()   
     {
         _triggerValue = triggerInputActionReference.action.ReadValue<float>();
