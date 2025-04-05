@@ -3,27 +3,27 @@ using UnityEngine;
 
 public class Grimoire : MonoBehaviour
 {
-    public Transform target; // Set to target to follow
-    public float followSpeed = 5f;    // Smoothing
+    [SerializeField] private Transform _target; // Set to target to follow
+    [SerializeField] private float followSpeed = 5f;    // Smoothing
     
-    public Vector3 positionOffset;
-    public Vector3 angle;
+    [SerializeField] private Vector3 positionOffset;
+    [SerializeField] private Vector3 angle;
 
     private void Start()
     {
-        float angleY = target.eulerAngles.y;
+        //float angleY = target.eulerAngles.y;
         // Smooth follow
-        transform.position = GetTargetPosition(angleY);
+        //transform.position = GetTargetPosition(angleY);
 
         // Make the book face the same way as the player
-        transform.rotation = Quaternion.Euler(angle.x, angle.y + angleY, angle.z);
+        //transform.rotation = Quaternion.Euler(angle.x, angle.y + angleY, angle.z);
     }
 
     void Update()
     {
-        if (!target) return;
+        //if (!target) return;
         // Get the yaw angle (rotation around Y) of the player
-        float angleY = target.eulerAngles.y;
+        float angleY = _target.eulerAngles.y;
 
         // Build desired position
         Vector3 desiredPosition = GetTargetPosition(angleY);
@@ -46,9 +46,9 @@ public class Grimoire : MonoBehaviour
 
         // Build desired position
        return new Vector3(
-            target.position.x + offsetX,
-            target.position.y + positionOffset.y,
-            target.position.z + offsetZ
+            _target.position.x + offsetX,
+            _target.position.y + positionOffset.y,
+            _target.position.z + offsetZ
         );
     }
 }
