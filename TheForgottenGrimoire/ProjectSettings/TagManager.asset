@@ -7,6 +7,10 @@ TagManager:
   - Sheet
   - FalseBlade
   - StaffSocket
+  - leftHand
+  - rightHand
+  - rightHandInteractor
+  - leftHandInteractor
   layers:
   - Default
   - TransparentFX

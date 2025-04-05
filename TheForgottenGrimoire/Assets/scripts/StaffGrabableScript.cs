@@ -7,9 +7,16 @@ public class StaffGrabableScript : XRGrabInteractable
     [SerializeField] private Transform _grabAttachPoint;
     [SerializeField] private Transform _socketAttachPoint;
 
+    private bool isInteractorTag(SelectEnterEventArgs args, string tag)
+    {
+        return args.interactableObject.transform.CompareTag(tag);
+    }
+
     protected override void OnSelectEntering(SelectEnterEventArgs args)
     {
-        if (args.interactorObject.transform.CompareTag("StaffSocket")) attachTransform = _socketAttachPoint.transform;
+        Transform interactor = args.interactorObject.transform;
+        if (isInteractorTag(args, "StaffSocket")) attachTransform = _socketAttachPoint.transform;
+        else if (isInteractorTag(args, "leftHandInteractor")) print("[DEBUG] staff is being grabbed");
         base.OnSelectEntering(args);
     }
 
