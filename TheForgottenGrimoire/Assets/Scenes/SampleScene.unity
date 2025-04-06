@@ -119,38 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &92220012 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 975326512693904577, guid: 7bbb1960bab3e75459304488d8d1ffba, type: 3}
-  m_PrefabInstance: {fileID: 1806769037}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &92220016 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 975326512693904583, guid: 7bbb1960bab3e75459304488d8d1ffba, type: 3}
   m_PrefabInstance: {fileID: 1806769037}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92220012}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &92220018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92220012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e86371211f121c488aba185986e4c49e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smallDistanceTP: 5
-  largeDistanceTP: 10
-  toggle: {fileID: 0}
-  xrRayInteractor: {fileID: 0}
 --- !u!1001 &133980029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2076,10 +2055,7 @@ PrefabInstance:
     - {fileID: 1205622979159415432, guid: 7bbb1960bab3e75459304488d8d1ffba, type: 3}
     - {fileID: 1851643275860194839, guid: 7bbb1960bab3e75459304488d8d1ffba, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 975326512693904577, guid: 7bbb1960bab3e75459304488d8d1ffba, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 92220018}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bbb1960bab3e75459304488d8d1ffba, type: 3}
 --- !u!1 &1989637012
 GameObject:
