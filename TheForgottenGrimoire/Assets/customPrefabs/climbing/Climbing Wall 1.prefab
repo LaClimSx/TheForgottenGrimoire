@@ -1722,6 +1722,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1540121174362576832}
     m_Modifications:
+    - target: {fileID: 2710233220456865805, guid: 0e6bfca4d41099745a9d52ec5680fb8b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7294252508698723676, guid: 0e6bfca4d41099745a9d52ec5680fb8b, type: 3}
       propertyPath: m_Name
       value: HandlesSet
