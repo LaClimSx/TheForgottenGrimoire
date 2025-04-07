@@ -657,11 +657,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6724120864193536986, guid: a7c61d336b939aa4cad12f22afcd20da, type: 3}
       propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6724120864193536986, guid: a7c61d336b939aa4cad12f22afcd20da, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6724120864193536986, guid: a7c61d336b939aa4cad12f22afcd20da, type: 3}
       propertyPath: m_ProvidesContacts
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7997259632287997389, guid: a7c61d336b939aa4cad12f22afcd20da, type: 3}
       propertyPath: m_LocalPosition.x
