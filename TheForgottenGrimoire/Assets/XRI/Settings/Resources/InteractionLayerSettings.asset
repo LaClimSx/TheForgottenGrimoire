@@ -40,8 +40,8 @@ MonoBehaviour:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - climb
+  - socket
+  - farGrab
+  - nearGrab
   - Teleport

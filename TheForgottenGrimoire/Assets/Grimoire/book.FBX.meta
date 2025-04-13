@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 009b9f48a477a2a4ab577cb2c1cf61fe
+AssetOrigin:
+  serializedVersion: 1
+  productId: 3996
+  packageName: Grimoire Style Book
+  packageVersion: 1.0
+  assetPath: Assets/Grimoire/book.FBX
+  uploadId: 26689
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
@@ -108,10 +115,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 3996
-  packageName: Grimoire Style Book
-  packageVersion: 1.0
-  assetPath: Assets/Grimoire/book.FBX
-  uploadId: 26689
