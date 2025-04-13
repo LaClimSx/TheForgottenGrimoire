@@ -10,9 +10,9 @@ public class SwordGrabInteractable : XRGrabInteractable
 
     protected override void OnSelectEntering(SelectEnterEventArgs args)
     {
-        if (args.interactorObject.transform.CompareTag("Sheet"))
+        if (args.interactorObject.transform.CompareTag("roc"))
         {
-            _blade.SetActive(false);
+            _blade.GetComponent<Collider>().providesContacts = false;
             attachTransform = _attachPoint2;
         }
         base.OnSelectEntering(args);
@@ -20,10 +20,10 @@ public class SwordGrabInteractable : XRGrabInteractable
 
     protected override void OnSelectExiting(SelectExitEventArgs args)
     {
-        if (args.interactorObject.transform.CompareTag("Sheet"))
+        if (args.interactorObject.transform.CompareTag("roc"))
         {
             attachTransform = _attachPoint1;
-            _blade.SetActive(true);
+            _blade.GetComponent<Collider>().providesContacts = true;
         }
         base.OnSelectExiting(args);
     }

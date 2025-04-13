@@ -11,6 +11,7 @@ TagManager:
   - rightHand
   - rightHandInteractor
   - leftHandInteractor
+  - roc
   layers:
   - Default
   - TransparentFX
