@@ -359,6 +359,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 195190420563360910, guid: 6a448845c7017044e8a9f3d711cfe825, type: 3}
   m_PrefabInstance: {fileID: 218887089}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &218887091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 195190420563360905, guid: 6a448845c7017044e8a9f3d711cfe825, type: 3}
+  m_PrefabInstance: {fileID: 218887089}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &393216187 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 009b9f48a477a2a4ab577cb2c1cf61fe, type: 3}
@@ -503,8 +514,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smallDistanceTP: 4.5
   largeDistanceTP: 15
-  toggle: {fileID: 1305959807}
+  toggleTP: {fileID: 1305959807}
   xrRayInteractor: {fileID: 1928056211}
+  smallDistanceGrab: 5
+  largeDistanceGrab: 15
+  toggleGrab: {fileID: 218887091}
+  curveInteractionCasterLeft: {fileID: 661899323}
+  curveInteractionCasterRight: {fileID: 661899322}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,6 +1012,28 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 666871600}
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+--- !u!114 &661899322 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3074471628601745017, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 661899321}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef20135915079454985abea5a2ec8967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &661899323 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5456733348963664102, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 661899321}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef20135915079454985abea5a2ec8967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &666871595 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1767192433, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
