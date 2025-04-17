@@ -4,14 +4,13 @@ using static CustomTypes;
 public class InteractorElement : MonoBehaviour
 {
     public ElementType type; 
-    [SerializeField] private float power;
+    public float power;
 
-    [SerializeField] private SpellForm form;
+    [SerializeField] protected SpellForm form;
 
-    void Start()
+    protected virtual void Start()
     {
         gameObject.tag = $"{type}_interactor";
-
     }
 
     // Update is called once per frame
