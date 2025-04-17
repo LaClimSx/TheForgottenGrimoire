@@ -31,6 +31,7 @@ public class InteractableFire : InteractableElement
         if (collision.gameObject.tag == $"{type}_interactor") {
             print($"bonked {type}_interactor");
             burning = true;
+            GetComponent<Renderer>().material.color = Color.red;
         }
 
     }

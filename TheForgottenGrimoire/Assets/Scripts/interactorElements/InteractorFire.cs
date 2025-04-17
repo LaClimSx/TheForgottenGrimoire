@@ -8,7 +8,7 @@ public class InteractorFire : InteractorElement
     {
         type = ElementType.Fire;
         // for now, always the same :
-        power = 2f;
+        power = 1f;
         form = SpellForm.Fist;
         base.Start();
         print($"i'm {gameObject.tag}");
