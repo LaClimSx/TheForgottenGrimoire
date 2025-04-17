@@ -4,7 +4,14 @@ using static CustomTypes;
 public class InteractableElement : MonoBehaviour
 {
     public ElementType type; 
-    [SerializeField] protected float power = 0f;
+    [SerializeField] protected float power;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        power = 0f;
+    }
+
 
     // Update is called once per frame
     void Update()
