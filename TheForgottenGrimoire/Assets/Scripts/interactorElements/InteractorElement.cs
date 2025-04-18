@@ -1,9 +1,9 @@
 using UnityEngine;
-using static CustomTypes;
+using InteractionTypes;
 
 public class InteractorElement : MonoBehaviour
 {
-    public ElementType type; 
+    public InteractorType type; 
     public float power;
 
     [SerializeField] protected SpellForm form;

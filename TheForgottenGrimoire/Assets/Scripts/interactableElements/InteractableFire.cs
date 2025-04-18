@@ -1,5 +1,5 @@
 using UnityEngine;
-using static CustomTypes;
+using InteractionTypes;
 
 public class InteractableFire : InteractableElement
 {
@@ -9,7 +9,7 @@ public class InteractableFire : InteractableElement
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        type = ElementType.Fire;
+        type = InteractableType.Flammable;
         burning = false;
     }
 
