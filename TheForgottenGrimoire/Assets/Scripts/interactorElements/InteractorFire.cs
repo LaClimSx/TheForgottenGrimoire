@@ -1,20 +1,17 @@
 using UnityEngine;
-using InteractionTypes;
 
 public class InteractorFire : InteractorElement
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected override void Start()
+    private void Awake()
     {
-        type = InteractorType.Fire;
-        // for now, always the same :
-        power = 1f;
-        form = SpellForm.Fist;
-        base.Start();
-        print($"i'm {gameObject.tag}");
+        Type = InteractorType.Fire;
     }
 
-    public void OnCollisionEnter(Collision collision)
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    protected void Start()
     {
+        // for now, always the same :
+        //Power = 1f;
+        //form = SpellForm.Fist;
     }
 }

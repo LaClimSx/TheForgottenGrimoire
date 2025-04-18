@@ -1,5 +1,4 @@
 using UnityEngine;
-using InteractionTypes;
 
 public class InteractableFire : InteractableElement
 {
@@ -9,7 +8,7 @@ public class InteractableFire : InteractableElement
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        type = InteractableType.Flammable;
+        Type = InteractableType.Flammable;
         burning = false;
     }
 
@@ -17,7 +16,7 @@ public class InteractableFire : InteractableElement
     void Update()
     {
         if (burning && life > 0) {
-            life -= power;
+            life -= Power;
             life = life < 0 ? 0 : life;
             print(life);
         } else if (life == 0) {
@@ -27,12 +26,12 @@ public class InteractableFire : InteractableElement
 
     public void OnCollisionEnter(Collision collision)
     {
-        base.OnCollisionEnter(collision);
-        if (collision.gameObject.tag == $"{type}_interactor") {
-            print($"bonked {type}_interactor");
+        InteractorElement interactor = collision.gameObject.GetComponent<InteractorFire>();
+        if (interactor != null) {
+            print($"bonked interactor {interactor.Type}");
             burning = true;
+            Power += interactor.Power;
             GetComponent<Renderer>().material.color = Color.red;
         }
-
     }
 }

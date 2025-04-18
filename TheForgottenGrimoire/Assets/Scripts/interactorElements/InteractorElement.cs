@@ -1,27 +1,30 @@
 using UnityEngine;
-using InteractionTypes;
 
-public class InteractorElement : MonoBehaviour
+public abstract class InteractorElement : MonoBehaviour
 {
-    public InteractorType type; 
-    public float power;
-
-    [SerializeField] protected SpellForm form;
-
-    protected virtual void Start()
+    public enum InteractorType
     {
-        gameObject.tag = $"{type}_interactor";
+        Earth,
+        Wind,
+        Fire,
+        Elec,
+        Space
+    }
+ 
+    public InteractorType Type { get; protected set; }
+
+    [SerializeField] private float power = 0f;
+    public float Power 
+    { 
+        get
+        {
+            return power;
+        } 
+        protected set
+        {
+            power = value;
+        } 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void OnCollisionEnter(Collision collision)
-    {
-        
-    }
-
+    //[SerializeField] public SpellForm form { get; protected set; } don't make sense to me
 }

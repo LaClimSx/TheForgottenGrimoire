@@ -1,17 +1,17 @@
 using UnityEngine;
-using InteractionTypes;
 
-public abstract class InteractableElement : MonoBehaviour
+public class InteractableElement : MonoBehaviour
 {
-    public InteractableType type; 
-    [SerializeField] protected float power = 0f;
-
-    public void OnCollisionEnter(Collision collision)
+    public enum InteractableType
     {
-        if (collision.gameObject.tag == $"{type}_interactor") {
-            print($"super bonked {type}_interactor");
-            power = collision.gameObject.GetComponent<InteractorElement>().power;
-        }
+        Flammable,
+        Conductor,
+        Chargeable,
+        Moveable,
+        Climbable
     }
 
+    public InteractableType Type { get; protected set; }
+
+    public float Power { protected get; set; } = 0f;
 }
