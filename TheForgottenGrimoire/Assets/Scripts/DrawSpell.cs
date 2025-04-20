@@ -1,5 +1,9 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using spells;
+using Unity.Mathematics;
 using UnityEngine.InputSystem;
 
 public class DrawSpell : MonoBehaviour
@@ -20,6 +24,8 @@ public class DrawSpell : MonoBehaviour
 
     [SerializeField] private bool colliderTrigger = false;
 
+    [SerializeField] private GameObject mainCamera; 
+
     private Vector3 prevPointDistance = Vector3.zero;
 
     private List<Vector3> points = new List<Vector3>();
@@ -32,6 +38,8 @@ public class DrawSpell : MonoBehaviour
     private Transform staffSphere;
 
     private StaffGrabableScript staffGrabableScript;
+
+    private SpellDetector SpellDetector = new SpellDetector();
 
     void Start()
     {
@@ -67,6 +75,11 @@ public class DrawSpell : MonoBehaviour
                 points_string += point.ToString() + ", ";
             }
             print($"Points: {points_string}");
+            
+            SpellDetector.DetectSpell(points, mainCamera.transform.position, (detected, score) =>
+            {
+                Debug.Log("detected:" + detected + " score:" + score);
+            });
             
             Destroy(currentTubeRenderer, 1f);
             AddNewTubeRenderer();
