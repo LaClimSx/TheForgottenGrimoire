@@ -13,5 +13,9 @@ public class InteractableElement : MonoBehaviour
 
     public InteractableType Type { get; protected set; }
 
-    public float Power { protected get; set; } = 0f;
+    //private float power = 0f;
+    public float Power {
+        protected get;
+        set;
+    }
 }

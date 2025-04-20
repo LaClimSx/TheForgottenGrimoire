@@ -7,6 +7,6 @@ public class ApplyForce : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Rigidbody>().linearVelocity = -transform.InverseTransformDirection(_force);
+        GetComponent<Rigidbody>().linearVelocity = transform.InverseTransformDirection(_force);
     }
 }

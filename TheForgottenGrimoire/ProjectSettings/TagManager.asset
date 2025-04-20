@@ -13,6 +13,7 @@ TagManager:
   - leftHandInteractor
   - roc
   - Fire_interactor
+  - handles
   layers:
   - Default
   - TransparentFX

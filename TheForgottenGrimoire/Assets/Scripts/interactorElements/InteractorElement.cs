@@ -20,7 +20,7 @@ public abstract class InteractorElement : MonoBehaviour
         {
             return power;
         } 
-        protected set
+        set
         {
             power = value;
         } 
