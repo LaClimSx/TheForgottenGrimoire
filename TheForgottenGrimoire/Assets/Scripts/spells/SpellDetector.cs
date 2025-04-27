@@ -42,26 +42,16 @@ namespace spells
                 return;
             }
 
-            // Approximation of mean of draw to project.
-            float meanX = (listPoints[0].x + listPoints[1 / n].x + listPoints[2 / n].x + listPoints[3 / n].x) / 4.0f;
-            float meanZ = (listPoints[0].z + listPoints[1 / n].z + listPoints[2 / n].z + listPoints[3 / n].z) / 4.0f;
-            
-            Vector2 direction = new Vector2(meanX, meanZ) - new Vector2(headSetPosition.x, headSetPosition.z);
-            if (direction.magnitude < 1e-5)
-            {
-                Debug.LogWarning("Headset and mean points too close");
-                return;
-            }
-            
-            Vector2 normalizedDirection = direction.normalized;
-            Vector2 rightAngleDirection = new Vector2(normalizedDirection.y, -normalizedDirection.x);
-            
+
+            var perpendicularDirection = GetPerpendicularDirection(listPoints, headSetPosition);
+            Debug.Log("Perpendicual direction " + perpendicularDirection);
+
             // Arrays of x and y coordinates
             double[] xs = new double[n];
             double[] ys = new double[n];
             
             // inverse direction to match the shape reference
-            ProjectTo2D(listPoints, n, xs, ys, rightAngleDirection);
+            ProjectTo2D(listPoints, n, xs, ys, perpendicularDirection);
             
         
             // Find smallest and largest x and y value.
@@ -71,13 +61,13 @@ namespace spells
             double maxY = ys.Max();
             
             
-            // Normalize points from 0 to 1. For axis x and y.
+            // Get difference to normalize points from 0 to 1. For axis x and y.
             double diffX = maxX - minX;
             double diffY = maxY - minY;
             
         
-            // Find p1 the left most (and low) point.
-            // The point satisfying the equation p1_index = argmax(-4x-y) for x,y the points in listPoints
+            
+            // Leftmost and low point.
             int p1Index = 0;
             double p1MaxValue = double.NegativeInfinity; // Smallest value to be override.
             
@@ -87,7 +77,8 @@ namespace spells
                 xs[i] = (xs[i] - minX) / diffX;
                 ys[i] = (ys[i] - minY) / diffY;
                 
-            
+                // Find p1 the left most (and low) point.
+                // The point satisfying the equation p1_index = argmax(-4x-y) for x,y the points in listPoints
                 if (-4 * xs[i] - ys[i] > p1MaxValue)
                 {
                     p1Index = i;
@@ -111,7 +102,7 @@ namespace spells
             // Loop through all points except the first and last point.
             for (int i = 1; i < n - 1; i++)
             {
-                // For each point, we check 5 different shape parametrization.
+                // For each point, we check the 5 different shapes parametrization.
                 // We evaluate each shape by checking three consecutive points: i-1, i, and i+1.
 
                 var minErrorSquaredIn3Points = MinErrorSquaredIn3Points(i, p1Index, n, topBottom, clockwise, xs, ys);
@@ -147,6 +138,26 @@ namespace spells
             
             onDetect?.Invoke((SpellType)idxMinError, softmaxInv[idxMinError]);
         }
+        
+        Vector3 GetPerpendicularDirection(List<Vector3> listPoints, Vector3 headSetPosition)
+        {
+            int n = listPoints.Count;
+            // Approximation of mean of draw to project.
+            float meanX = (listPoints[0].x + listPoints[1 / n].x + listPoints[2 / n].x + listPoints[3 / n].x) / 4.0f;
+            float meanZ = (listPoints[0].z + listPoints[1 / n].z + listPoints[2 / n].z + listPoints[3 / n].z) / 4.0f;
+            
+            Vector2 direction = new Vector2(meanX, meanZ) - new Vector2(headSetPosition.x, headSetPosition.z);
+            if (direction.magnitude < 1e-5)
+            {
+                Debug.LogWarning("Headset and mean points too close");
+                return new Vector3(1.0f, 0.0f, 0.0f);
+            }
+            
+            Vector2 normalizedDirection = direction.normalized;
+            return new Vector2(normalizedDirection.y, -normalizedDirection.x);
+        }
+        
+        
 
         private double[] MinErrorSquaredIn3Points(int i, int p1Index, int n, bool topBottom, bool clockwise, double[] xs,
             double[] ys)
@@ -201,7 +212,7 @@ namespace spells
             // TODO change projection to right angle of vector. For now assume value is on coordinate x.
             for (int i = 0; i < n; i++)
             {
-                xs[i] = listPoints[i].x;//-listPoints[i].x * direction.x - listPoints[i].z * direction.y;
+                xs[i] = listPoints[i].x * direction.x + listPoints[i].z * direction.y;
                 ys[i] = listPoints[i].y;
             }
         }
