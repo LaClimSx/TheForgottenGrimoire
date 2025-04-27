@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f91bc6f-9b43-45cf-986d-8e4920fb37ec" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Tests/PlayMode/SpellDetectorTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Tests/PlayMode/SpellDetectorTests.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheForgottenGrimoire/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheForgottenGrimoire/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DrawSpell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DrawSpell.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XRI/Settings/Resources/XRDeviceSimulatorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XRI/Settings/Resources/XRDeviceSimulatorSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scripts/Grimoire.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scripts/Grimoire.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scripts/Staff.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scripts/Staff.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scripts/StaffGrabableScript.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/scripts/StaffGrabableScript.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tests/PlayMode/SpellDetectorTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/PlayMode/SpellDetectorTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +111,11 @@
       <workItem from="1743671926682" duration="840000" />
       <workItem from="1743949364502" duration="1552000" />
       <workItem from="1745153470068" duration="19003000" />
-      <workItem from="1745172677258" duration="391000" />
+      <workItem from="1745172677258" duration="1334000" />
+      <workItem from="1745220106890" duration="2649000" />
+      <workItem from="1745243537654" duration="3425000" />
+      <workItem from="1745580711207" duration="3539000" />
+      <workItem from="1745736784652" duration="12071000" />
     </task>
     <servers />
   </component>
