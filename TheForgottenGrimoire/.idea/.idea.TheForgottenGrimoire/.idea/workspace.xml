@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2f91bc6f-9b43-45cf-986d-8e4920fb37ec" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheForgottenGrimoire/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheForgottenGrimoire/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DrawSpell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DrawSpell.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/spells/SpellDetector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/spells/SpellDetector.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,7 +117,7 @@
       <workItem from="1745243537654" duration="3425000" />
       <workItem from="1745580711207" duration="3539000" />
       <workItem from="1745736784652" duration="12434000" />
-      <workItem from="1745755281286" duration="1214000" />
+      <workItem from="1745755281286" duration="3003000" />
     </task>
     <servers />
   </component>

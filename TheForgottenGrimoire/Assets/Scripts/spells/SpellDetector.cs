@@ -17,8 +17,11 @@ namespace spells
             Triangle
         }
 
-        
-        
+        private const int NumberShapes = 5;
+        private const int MinNumberPoints = 10;
+        private static readonly Vector2 DirectionLeftLow = new(-4f, -1f);
+
+
         /// <summary>
         /// Detects the type of spell based on a sequence of 3D points and the headset position.
         /// </summary>
@@ -26,34 +29,94 @@ namespace spells
         /// <param name="headSetPosition">The position of the headset at the time the spell was cast, used for spatial context.</param>
         /// <param name="onDetect">
         /// A callback invoked when the spell is detected.
-        /// The first parameter is an integer representing the spell type:
-        /// 0 = Lightning, 1 = Spiral, 2 = Square, 3 = Space, 4 = Fire.
+        /// The first parameter is a spell type:
+        /// Lightning, Spiral, Square, Space, Fire.
         /// The second parameter is a double between 0 and 1 representing how well the spell was cast (higher is better).
         /// </param>
         public void DetectSpell(List<Vector3> listPoints, Vector3 headSetPosition, Action<SpellType, double> onDetect)
         {
             
-            int n = listPoints.Count;
+            int numberOfPoints = listPoints.Count;
         
             // We need at least 10 points to do a correct spell.
-            if (n < 10)
+            if (numberOfPoints < MinNumberPoints)
             {
                 Debug.LogWarning("Not enough points to detect spell");
                 return;
             }
 
-
+            // Get the perpendicular direction of the headset to points.
             var perpendicularDirection = GetPerpendicularDirection(listPoints, headSetPosition);
-            Debug.Log("Perpendicual direction " + perpendicularDirection);
 
             // Arrays of x and y coordinates
-            double[] xs = new double[n];
-            double[] ys = new double[n];
+            double[] xs = new double[numberOfPoints];
+            double[] ys = new double[numberOfPoints];
             
-            // inverse direction to match the shape reference
-            ProjectTo2D(listPoints, n, xs, ys, perpendicularDirection);
+            //  Project points from 3d to 2d.
+            ProjectTo2D(listPoints, xs, ys, perpendicularDirection);
+            
+            // Normalize coordinates.
+            NormalizeCoordinate(xs, ys);
+
+            // LeftMostPoint
+            var p1Index = GetLeftMostPointIndex(xs, ys);
+
+            // Find p2 a point after p1 to detect directions.
+            int p2Index = (p1Index + numberOfPoints/8) % numberOfPoints;
+            
+            
+            // Check for lightning and wind if first point is above last point
+            bool topBottom = ys[0] > ys[numberOfPoints-1];
             
         
+            // For earth, space and fire, we check in which direction it goes.
+            bool clockwise = xs[p2Index] - xs[p1Index] < 4*(ys[p2Index] - ys[p1Index]);
+            
+            // The total squared error for each shape.
+            double[] cumulativeErrorsSquared = {0, 0, 0, 0, 0};
+            
+            // Loop through all points except the first and last point.
+            for (int i = 1; i < numberOfPoints - 1; i++)
+            {
+                // For each point, we check the 5 different shapes parametrization.
+                // We evaluate each shape by checking three consecutive points: i-1, i, and i+1.
+
+                var minErrorSquaredIn3Points = MinErrorSquaredIn3Points(i, p1Index, topBottom, clockwise, xs, ys);
+
+                // After checking the three points, update cumulative error with minimum found error.
+                for (int j = 0; j < NumberShapes; j++)
+                {
+                    cumulativeErrorsSquared[j] += minErrorSquaredIn3Points[j];
+                }
+            }
+            
+            var idxMinError = IdxMinErrorAndScore(cumulativeErrorsSquared, numberOfPoints, out var softmaxInvMinError);
+
+            onDetect?.Invoke((SpellType)idxMinError, softmaxInvMinError);
+        }
+
+        private static int GetLeftMostPointIndex(double[] xs, double[] ys)
+        {
+            // Leftmost and low point.
+            int p1Index = 0;
+            double p1MaxValue = double.NegativeInfinity; // Smallest value to be override.
+            
+            for (int i = 0; i < xs.Length; i++)
+            {
+                // Find p1 the left most (and low) point.
+                // The point satisfying the equation p1_index = argmax(-4x-y) for x,y the points in listPoints
+                if (DirectionLeftLow[0] * xs[i] + DirectionLeftLow[1] * ys[i] > p1MaxValue)
+                {
+                    p1Index = i;
+                    p1MaxValue = DirectionLeftLow[0] * xs[i] + DirectionLeftLow[1] * ys[i];
+                }
+            }
+
+            return p1Index;
+        }
+
+        private static void NormalizeCoordinate(double[] xs, double[] ys)
+        {
             // Find smallest and largest x and y value.
             double minX = xs.Min();
             double maxX = xs.Max();
@@ -65,63 +128,23 @@ namespace spells
             double diffX = maxX - minX;
             double diffY = maxY - minY;
             
-        
-            
-            // Leftmost and low point.
-            int p1Index = 0;
-            double p1MaxValue = double.NegativeInfinity; // Smallest value to be override.
-            
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < xs.Length; i++)
             {
                 // Normalize point
                 xs[i] = (xs[i] - minX) / diffX;
                 ys[i] = (ys[i] - minY) / diffY;
-                
-                // Find p1 the left most (and low) point.
-                // The point satisfying the equation p1_index = argmax(-4x-y) for x,y the points in listPoints
-                if (-4 * xs[i] - ys[i] > p1MaxValue)
-                {
-                    p1Index = i;
-                    p1MaxValue = -4 * xs[i] - ys[i];
-                }
             }
-        
-            // Find p2 a point after p1 to detect directions.
-            int p2Index = (p1Index + n/8) % n;
-            
-            
-            // Check for lightning and wind if first point is above last point
-            bool topBottom = ys[0] > ys[n-1];
-            
-        
-            // For earth, space and fire, we check in which direction it goes.
-            bool clockwise = xs[p2Index] - xs[p1Index] < 4*(ys[p2Index] - ys[p1Index]);
-            
-            double[] cumulativeErrorsSquared = {0, 0, 0, 0, 0};
-            
-            // Loop through all points except the first and last point.
-            for (int i = 1; i < n - 1; i++)
-            {
-                // For each point, we check the 5 different shapes parametrization.
-                // We evaluate each shape by checking three consecutive points: i-1, i, and i+1.
+        }
 
-                var minErrorSquaredIn3Points = MinErrorSquaredIn3Points(i, p1Index, n, topBottom, clockwise, xs, ys);
-
-                // After checking the three points, update cumulative error with minimum found error.
-                for (int j = 0; j < 5; j++)
-                {
-                    cumulativeErrorsSquared[j] += minErrorSquaredIn3Points[j];
-                }
-            }
-            
-            
+        private static int IdxMinErrorAndScore(double[] cumulativeErrorsSquared, int numberOfPoints, out double softmaxInvMinError)
+        {
             // Calculate the l2_error and keep min index
             double minError = cumulativeErrorsSquared[0];
             int idxMinError = 0;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < NumberShapes; i++)
             {
                 // Calculate the L2 score from the sum of squared error
-                cumulativeErrorsSquared[i] /= n-2;
+                cumulativeErrorsSquared[i] /= numberOfPoints-2; // We don't take first and last point.
                 cumulativeErrorsSquared[i] = Math.Sqrt(cumulativeErrorsSquared[i]);
                 
                 
@@ -134,15 +157,16 @@ namespace spells
             }
 
             // Create a score given how close the shape is to all references
-            double[] softmaxInv = SoftmaxInverse(cumulativeErrorsSquared);
             
-            onDetect?.Invoke((SpellType)idxMinError, softmaxInv[idxMinError]);
+            double [] softmaxInv = SoftmaxInverse(cumulativeErrorsSquared);
+            softmaxInvMinError = softmaxInv[idxMinError];
+            return idxMinError;
         }
-        
+
         Vector3 GetPerpendicularDirection(List<Vector3> listPoints, Vector3 headSetPosition)
         {
             int n = listPoints.Count;
-            // Approximation of mean of draw to project.
+            // Approximation of mean of draw ny taking 4 points.
             float meanX = (listPoints[0].x + listPoints[1 / n].x + listPoints[2 / n].x + listPoints[3 / n].x) / 4.0f;
             float meanZ = (listPoints[0].z + listPoints[1 / n].z + listPoints[2 / n].z + listPoints[3 / n].z) / 4.0f;
             
@@ -159,12 +183,12 @@ namespace spells
         
         
 
-        private double[] MinErrorSquaredIn3Points(int i, int p1Index, int n, bool topBottom, bool clockwise, double[] xs,
+        private double[] MinErrorSquaredIn3Points(int i, int p1Index, bool topBottom, bool clockwise, double[] xs,
             double[] ys)
         {
             // Initialize minimum squared errors for each shape to positive infinity.
-            double[] minErrorSquaredIn3Points = new double[5];
-            for (int k = 0; k < 5; k++)
+            double[] minErrorSquaredIn3Points = new double[NumberShapes];
+            for (int k = 0; k < NumberShapes; k++)
             {
                 minErrorSquaredIn3Points[k] = double.PositiveInfinity;
             }
@@ -173,7 +197,7 @@ namespace spells
             for (int k = -1; k <= 1; k++)
             {
                 // Get parametrization for the current point.
-                double[] parametrization = getParametrization(i + k, p1Index, n, topBottom, clockwise);
+                double[] parametrization = GetParametrization(i + k, p1Index, xs.Length, topBottom, clockwise);
                 double tLightningSpiral = parametrization[0];
                 double tSquareInfinityTriangle = parametrization[1];
 
@@ -189,7 +213,7 @@ namespace spells
                 };
 
                 // Evaluate squared error for each shape and keep the minimum over three points.
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < NumberShapes; j++)
                 {
                     double predictedX = xFunctions[j](tValues[j]);
                     double predictedY = yFunctions[j](tValues[j]);
@@ -207,23 +231,24 @@ namespace spells
             return minErrorSquaredIn3Points;
         }
 
-        private static void ProjectTo2D(List<Vector3> listPoints, int n, double[] xs, double[] ys, Vector3 direction)
+        private static void ProjectTo2D(List<Vector3> listPoints, double[] xs, double[] ys, Vector3 direction)
         {
-            // TODO change projection to right angle of vector. For now assume value is on coordinate x.
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < xs.Length; i++)
             {
                 xs[i] = listPoints[i].x * direction.x + listPoints[i].z * direction.y;
                 ys[i] = listPoints[i].y;
             }
         }
 
-        private double[] getParametrization(int pointNumber, int p1Index, int numberPoint, bool topBottom, bool clockwise)
+        private static double[] GetParametrization(int pointNumber, int p1Index, int numberPoint, bool topBottom, bool clockwise)
         {
             double t = (double)pointNumber / (numberPoint - 1);
             double t0 = t - (double)p1Index / numberPoint;
 
+            double tLightningSpiral = topBottom ? t : 1 - t;
+            double tSquareInfinityTriangle = clockwise ? (1 + t0) % 1 : (1 - t0) % 1;
 
-            return new[] { topBottom ? t : 1 - t, clockwise ? (1 + t0) % 1 : (1 - t0) % 1 };
+            return new[] { tLightningSpiral, tSquareInfinityTriangle };
         }
 
       
@@ -250,7 +275,7 @@ namespace spells
                 throw new ArgumentException("Input array 't' must not be null or empty.");
 
             // Ensure all t >= some small epsilon to avoid division by 0
-            double epsilon = 1e-8;
+            const double epsilon = 1e-8;
             double[] invT = t.Select(val => k / Math.Max(val, epsilon)).ToArray();
 
             // Softmax stabilization: subtract max to avoid numerical overflow
