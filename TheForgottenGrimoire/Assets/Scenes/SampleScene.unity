@@ -1516,6 +1516,7 @@ MonoBehaviour:
   defaultColor: {r: 0, g: 1, b: 1, a: 1}
   defaultLineMaterial: {fileID: 2100000, guid: 6b0924bea97d6bc42b36b8176ad3f272, type: 2}
   colliderTrigger: 0
+  mainCamera: {fileID: 666871595}
 --- !u!114 &1305959807 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 975326512693904583, guid: 7bbb1960bab3e75459304488d8d1ffba, type: 3}
