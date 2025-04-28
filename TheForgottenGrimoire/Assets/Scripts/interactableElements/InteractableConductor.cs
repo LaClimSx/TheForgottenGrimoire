@@ -14,8 +14,6 @@ public class InteractableConductor : InteractableElement
     private Color baseColor;
     private Color blinkColor = Color.cyan;
     private List<InteractorElec> interactors;
-    private List<InteractorElec> srcInteractors;
-    private List<InteractableConductor> listeningConductors;
 
     private float nextUpdate;
 
@@ -27,13 +25,6 @@ public class InteractableConductor : InteractableElement
         baseColor = renderer.material.color;
         conductor.enabled = false;
         interactors = new List<InteractorElec>();
-        srcInteractors = new List<InteractorElec>();
-        listeningConductors = new List<InteractableConductor>();
-    }
-
-    private void Start()
-    {
-        collidingConductors();
     }
 
     private void Update()
@@ -43,91 +34,70 @@ public class InteractableConductor : InteractableElement
             blink();
             nextUpdate = Time.time + _blinkInterval;
         }
+        if (interactors.Count <= 0 && renderer.material.color == blinkColor)
+        {
+            renderer.material.color = Color.green;   
+        }
     }
 
-    private void collidingConductors()
+    public void ElecFromAlreadyCollidingSrc(InteractorElec interactor)
+    {
+        if (!interactors.Contains(interactor)) addNewElecSrc(interactor);
+    }
+
+    /*private void alreadyCollidingConductors()
     {
         Collider[] colliders = Physics.OverlapBox(transform.position, transform.localScale / 2, Quaternion.identity);
         foreach (Collider collider in colliders)
         {
             InteractableConductor interactable = collider.gameObject.GetComponent<InteractableConductor>(); 
-            if (interactable != null && !interactable.Equals(this)) listeningConductors.Add(interactable);
+            if (interactable != null && !interactable.Equals(this)) 
         }
-    }
+    }*/
 
     private void OnCollisionEnter(Collision collision)
     {
-        InteractorElec interactor = collision.gameObject.GetComponent<InteractorElec>();
+        addNewElecSrc(collision.gameObject.GetComponent<InteractorElec>());   
+    }
+
+    private void addNewElecSrc(InteractorElec interactor)
+    {
         if (interactor != null && interactor.Type == InteractorElement.InteractorType.Elec)
         {
             interactors.Add(interactor);
-            bool isSrc = collision.gameObject.GetComponent<InteractableConductor>() != null;
-            if (isSrc) srcInteractors.Add(interactor);
             conductor.Power += interactor.Power;
-            conductor.enabled = true;
-            notifyListeners(interactor, isSrc, true);
+            if (!conductor.enabled)
+            {
+                conductor.enabled = true;
+                conductor.GetCurrentFrom(interactor);
+            }
         }
+    }
+
+    public void removeElecFromStillCollidingSource(InteractorElec interactor, float power)
+    {
+        if (interactors.Contains(interactor)) removeElecSrc(interactor, power);
     }
 
     private void OnCollisionExit(Collision collision)
     {
+        print($"[DEBUG] {name} detected an exiting collision with {collision.gameObject.name}");
         InteractorElec interactor = collision.gameObject.GetComponent<InteractorElec>();
+        if (interactor is not null) removeElecSrc(interactor, interactor.Power);
+        
+    }
+
+    private void removeElecSrc(InteractorElec interactor, float power)
+    {
         if (interactor != null && interactor.Type == InteractorElement.InteractorType.Elec)
         {
-            if (srcInteractors.Contains(interactor))
+            print($"[DEBUG] Removing elec source {interactor.name} to {name}");
+            interactors.Remove(interactor);
+            conductor.Power -= power;
+            if (conductor.Power <= 0)
             {
-                srcInteractors.Remove(interactor);
-                conductor.Power -= interactor.Power;
-                if (srcInteractors.Count == 0) conductor.enabled = false;
-                notifyListeners(interactor, true, false);
-            }
-            else
-            {
-                interactors.Remove(interactor);
-                conductor.Power -= interactor.Power;
-                if (conductor.Power <= 0) conductor.enabled = false;
-                notifyListeners(interactor, false, false);
-            }
-        }
-    }
-
-    private void notifyListeners(InteractorElec interactor, bool interactorIsSrc, bool isPropaging)
-    {
-        listeningConductors.ForEach(i =>
-        {
-            if (isPropaging) i.receiveElec(interactor, interactorIsSrc); 
-            else i.noMoreElec(interactor, interactorIsSrc);
-        });
-    }
-
-    public void receiveElec(InteractorElec interactor, bool interactorIsSrc)
-    {
-        if (!interactors.Contains(interactor)) 
-        {
-            conductor.Power += interactor.Power;
-            conductor.enabled = true;
-            interactors.Add(interactor);
-            if (interactorIsSrc) srcInteractors.Add(interactor);
-            notifyListeners(interactor, interactorIsSrc, true);
-        }
-    }
-
-    public void noMoreElec(InteractorElec interactor, bool interactorIsSrc)
-    {
-        if (interactors.Contains(interactor))
-        {
-            if (interactorIsSrc)
-            {
-                srcInteractors.Remove(interactor);
-                interactors.Remove(interactor);
-                if (srcInteractors.Count == 0) conductor.enabled = false;
-                else conductor.Power -= interactor.Power;
-                notifyListeners(interactor, interactorIsSrc, false);
-            } else
-            {
-                interactors.Remove(interactor);
-                conductor.Power -= interactor.Power;
-                notifyListeners(interactor, interactorIsSrc, false);
+                conductor.RemoveCurrentFrom(interactor, power);
+                conductor.enabled = false;
             }
         }
     }
