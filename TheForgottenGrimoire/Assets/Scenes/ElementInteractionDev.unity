@@ -693,7 +693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &152088470
 Transform:
   m_ObjectHideFlags: 0
@@ -1727,7 +1727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683d81c283e5e2f4f951aef1f3acbc45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 1
+  power: 10
 --- !u!54 &853580973
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2994,7 +2994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1717554261
 Transform:
   m_ObjectHideFlags: 0
@@ -3870,6 +3870,7 @@ GameObject:
   - component: {fileID: 2137259006}
   - component: {fileID: 2137259005}
   - component: {fileID: 2137259004}
+  - component: {fileID: 2137259008}
   m_Layer: 0
   m_Name: ChargeableCube
   m_TagString: Untagged
@@ -3966,6 +3967,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1717554261}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2137259008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137259003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2a6d4a3b693f4448d683496f3f2763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxCharge: 50
+  _blinkInterval: 0.15
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
