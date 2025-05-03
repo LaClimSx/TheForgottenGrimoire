@@ -15,7 +15,7 @@ public class InteractableElement : MonoBehaviour
 
     //private float power = 0f;
     public float Power {
-        protected get;
+        get;
         set;
     }
 }
