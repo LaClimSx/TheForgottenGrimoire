@@ -12,6 +12,9 @@ TagManager:
   - rightHandInteractor
   - leftHandInteractor
   - roc
+  - Fire_interactor
+  - handles
+  - conductorManager
   layers:
   - Default
   - TransparentFX
