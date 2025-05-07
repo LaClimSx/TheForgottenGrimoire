@@ -1,18 +1,19 @@
-using System;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
-using spells;
-using Unity.Mathematics;
+using Spells;
 using UnityEngine.InputSystem;
+using static Spells.SpellType;
 
 public class DrawSpell : MonoBehaviour
 {
-    [SerializeField] private InputActionReference triggerInputActionReference;
+    [SerializeField] private InputActionReference rightTriggerInputActionReference;
+    [SerializeField] private InputActionReference leftTriggerInputActionReference;
+    [SerializeField] private InputActionReference leftGripInputActionReference;
 
     [SerializeField] private GameObject staff;
 
-    [SerializeField] private float minTrigger = 0.25f;
+    [SerializeField] private float minPression = 0.25f;
+    [SerializeField] private float spellScoreThreshold = 0.5f;
 
     [SerializeField] private float minDistanceBeforeNewPoint = 0.05f;
 
@@ -41,10 +42,14 @@ public class DrawSpell : MonoBehaviour
 
     private SpellDetector SpellDetector = new SpellDetector();
 
+    private SpellManager spellManager;
+
+
     void Start()
     {
         AddNewTubeRenderer();
         staffGrabableScript = staff.GetComponent<StaffGrabableScript>();
+        spellManager = GetComponent<SpellManager>();
 
     }
 
@@ -57,9 +62,13 @@ public class DrawSpell : MonoBehaviour
 
         staffSphere = staff.transform.Find("Sphere");
 
-        float triggerValue = triggerInputActionReference.action.ReadValue<float>();
+        bool rightTriggerPressed = rightTriggerInputActionReference.action.ReadValue<float>() > minPression;
+        bool leftTriggerPressed = leftTriggerInputActionReference.action.ReadValue<float>() > minPression;
+        bool leftGripPressed = leftGripInputActionReference.action.ReadValue<float>() > minPression;
 
-        if (triggerValue > minTrigger)
+        SpellState spellState = spellManager.SpellState;
+
+        if (rightTriggerPressed && spellState == SpellState.Pending)
         {
             UpdateTube();
             isPinchingReleased = true;
@@ -68,22 +77,127 @@ public class DrawSpell : MonoBehaviour
         if (isPinchingReleased)
         {
 
-            //These are for debugging purposes
+            /*//These are for debugging purposes
             string points_string = "";
             foreach (Vector3 point in points)
             {
                 points_string += point.ToString() + ", ";
             }
             print($"Points: {points_string}");
-            
-            SpellDetector.DetectSpell(points, mainCamera.transform.position, (detected, score) =>
+            */
+            spellManager.SpellState = SpellState.Drawing;
+            SpellDetector.DetectSpell(points, mainCamera.transform.position, (SpellShape detected, double score) =>
             {
                 Debug.Log("detected:" + detected + " score:" + score);
+                OnSpellDetected(detected, score, leftTriggerPressed, leftGripPressed);
             });
-            
             Destroy(currentTubeRenderer, 1f);
             AddNewTubeRenderer();
             isPinchingReleased = false;
+        }
+
+    }
+
+    private void OnSpellDetected(SpellShape detected, double score, bool pinch, bool grip)
+    {
+        if (score < spellScoreThreshold)
+        {
+            Debug.Log("Spell not detected");
+            spellManager.SpellState = SpellState.Pending;
+            return;
+        }
+        SpellType spellType = NoSpell;
+        switch (detected)
+        {
+            case SpellShape.Lightning:
+                switch (pinch, grip)
+                {
+                    case (false, true): //Only grip -> Far zap
+                        spellType = ChargeShot;
+                        break;
+                    case (false, false): //Open hand -> Palpatine
+                        spellType = ArcHands;
+                        break;
+                    default:
+                        Debug.Log("Spell not detected");
+                        break;
+                }
+                break;
+            case SpellShape.Spiral:
+                switch (pinch, grip)
+                {
+                    case (false, true): //Only grip -> Hand jet
+                        spellType = HandJet;
+                        break;
+                    case (false, false): //Open hand -> Wind Column
+                        spellType = WindColumn;
+                        break;
+                    default:
+                        Debug.Log("Spell not detected");
+                        break;
+                }
+                break;
+            case SpellShape.Square:
+                switch (pinch, grip)
+                {
+                    case (true, false): //Only pinch -> Companion cube
+                        spellType = Cube;
+                        break;
+                    case (false, true): //Only grib -> Climbable rock projectile
+                        spellType = Earthball;
+                        break;
+                    default:
+                        Debug.Log("Spell not detected");
+                        break;
+                }
+                break;
+            case SpellShape.Infinity:
+                switch (pinch, grip)
+                {
+                    case (true, false): //Only pinch -> Telekinesis
+                        spellType = Telekinesis;
+                        break;
+                    case (false, true): //Only grip -> TP Hub
+                        spellType = Hub;
+                        break;
+                    case (false, false): //Open hand -> TP far
+                        spellType = Blinkstep;
+                        break;
+                    default:
+                        Debug.Log("Spell not detected");
+                        break;
+                }
+                break;
+            case SpellShape.Triangle:
+                switch (pinch, grip)
+                {
+                    case (true, false): //Only pinch -> Light that stays with you
+                        spellType = Emberlight;
+                        break;
+                    case (false, true): //Only grip -> Fireball
+                        spellType = SpellType.Fireball; //FOR SOME REASON JE PEUX PAS ENLEVER LE SPELLTYPE
+                        break;
+                    case (false, false): //Open hand -> Flame thrower
+                        spellType = FlameJet;
+                        break;
+                    default:
+                        Debug.Log("Spell not detected");
+                        break;
+                }
+                break;
+            default:
+                Debug.Log("Spell not detected");
+                spellManager.SpellState = SpellState.Pending;
+                return;
+        }
+        if (spellType != NoSpell)
+        {
+            spellManager.CurrentSpellType = spellType;
+            spellManager.SpellState = SpellState.Casting;
+        }
+        else
+        {
+            spellManager.SpellState = SpellState.Pending;
         }
 
     }

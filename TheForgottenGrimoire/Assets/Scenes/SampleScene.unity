@@ -1246,6 +1246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1212678325}
   - component: {fileID: 1212678326}
+  - component: {fileID: 1212678327}
   m_Layer: 0
   m_Name: XRSpellCaster
   m_TagString: Untagged
@@ -1280,7 +1281,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98eff8914d8fb149a0a8ae035e0f7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerInputActionReference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  rightTriggerInputActionReference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  leftTriggerInputActionReference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  leftGripInputActionReference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   staff: {fileID: 1387805522}
   minTrigger: 0.25
   minDistanceBeforeNewPoint: 0.05
@@ -1289,7 +1292,19 @@ MonoBehaviour:
   defaultColor: {r: 0, g: 1, b: 1, a: 1}
   defaultLineMaterial: {fileID: 2100000, guid: 6b0924bea97d6bc42b36b8176ad3f272, type: 2}
   colliderTrigger: 0
-  mainCamera: {fileID: 666871595}
+  mainCamera: {fileID: 5700530018673901919}
+--- !u!114 &1212678327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212678324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302d5cec949d6d847adf60a5d46eb040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1305959807 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 975326512693904583, guid: 7bbb1960bab3e75459304488d8d1ffba, type: 3}
@@ -3277,6 +3292,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5d9169f27282224490673868f26a58a, type: 3}
+--- !u!1 &5700530018673901919 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 815865306273720038, guid: d5d9169f27282224490673868f26a58a, type: 3}
+  m_PrefabInstance: {fileID: 5700530018673901918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -4,11 +4,9 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using NUnit.Framework;
-using spells;
+using Spells;
 using UnityEngine;
-using static spells.SpellDetector;
-using static spells.SpellDetector.SpellType;
-
+using static Spells.SpellShape;
 
 public static class Vector3Parser
 {
@@ -68,8 +66,8 @@ namespace Tests.EditMode
                 "(-0.21, 5.32, -21.77), (-0.22, 5.37, -21.77), (-0.22, 5.43, -21.77), (-0.20, 5.47, -21.77), (-0.16, 5.51, -21.76), (-0.11, 5.53, -21.75), (-0.07, 5.54, -21.73), (-0.02, 5.53, -21.72), (0.02, 5.50, -21.70), (0.06, 5.46, -21.69), (0.10, 5.42, -21.68), (0.13, 5.38, -21.68), (0.16, 5.34, -21.68), (0.21, 5.32, -21.69), (0.25, 5.30, -21.70), (0.30, 5.28, -21.72), (0.36, 5.28, -21.74), (0.40, 5.29, -21.77), (0.45, 5.31, -21.80), (0.49, 5.33, -21.82), (0.51, 5.38, -21.84), (0.51, 5.43, -21.85), (0.48, 5.48, -21.84), (0.45, 5.51, -21.82), (0.41, 5.52, -21.79), (0.36, 5.52, -21.76), (0.31, 5.50, -21.74), (0.27, 5.48, -21.72), (0.22, 5.46, -21.70), (0.17, 5.44, -21.69), (0.12, 5.40, -21.68), (0.07, 5.38, -21.68), (0.02, 5.36, -21.68), (-0.03, 5.35, -21.69), (-0.08, 5.34, -21.71), (-0.12, 5.33, -21.72), (-0.17, 5.35, -21.74),");
 
             List<Vector3>[] shapes = { eclair, triangle, triangle2, infinity, infinity2, spirale, triangle3, carre, eclair2, infinity3 };
-            SpellType[] shapesIndexes = { Lightning, Triangle, Triangle, SpellType.Infinity, 
-                SpellType.Infinity, Spiral, Triangle, Square, Lightning, SpellType.Infinity};
+            SpellShape[] shapesIndexes = { Lightning, Triangle, Triangle, Infinity, 
+                Infinity, Spiral, Triangle, Square, Lightning, Infinity};
 
 
             int counterCorrect = 0;
@@ -141,7 +139,7 @@ namespace Tests.EditMode
             List<List<Vector3>>listArraySpell = inputs.Select(Vector3Parser.ParseVector3List).ToList();
 
 
-            SpellType[] trueShapes = new SpellType[inputs.Length];
+            SpellShape[] trueShapes = new SpellShape[inputs.Length];
             for (int i = 0; i < 7; i++) { trueShapes[i] = Lightning; }
             for (int i = 7; i < 15; i++) { trueShapes[i] = Spiral; }
             for (int i = 15; i < 21; i++) { trueShapes[i] = Square; }
