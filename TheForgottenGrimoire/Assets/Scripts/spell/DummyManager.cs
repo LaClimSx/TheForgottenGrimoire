@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class DummyManager : MonoBehaviour
 {
     [SerializeField] private InputActionReference rightTriggerReference;
+    [SerializeField] private Transform rightHandTransform;
     [SerializeField] private GameObject fireball;
     
     void Update()
@@ -16,7 +17,7 @@ public class DummyManager : MonoBehaviour
 
     private void castFireball()
     {
-        GameObject castFireball = Instantiate(fireball, new Vector3(0, 1, 0), Quaternion.identity);
-        castFireball.GetComponent<Fireball>().launch(new Vector3(0, 1, 0));
+        GameObject castFireball = Instantiate(fireball, rightHandTransform.localPosition, rightHandTransform.localRotation);
+        castFireball.GetComponent<Fireball>().launch(new Vector3(0, 0, 1));
     }
 }
