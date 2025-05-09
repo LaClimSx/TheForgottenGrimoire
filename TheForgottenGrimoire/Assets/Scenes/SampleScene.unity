@@ -597,7 +597,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 0}
   leftPageRenderer: {fileID: 803837541}
-  rightPageRenderer: {fileID: 0}
+  rightPageRenderer: {fileID: 648938687}
   pageImages:
   - {fileID: 2800000, guid: 4f539e211c05f78cab3cec8395902223, type: 3}
   - {fileID: 2800000, guid: f6cc8e32918de0b8da833b84482f80fb, type: 3}
