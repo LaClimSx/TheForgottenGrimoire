@@ -7,7 +7,6 @@
     <list default="true" id="2f91bc6f-9b43-45cf-986d-8e4920fb37ec" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheForgottenGrimoire/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheForgottenGrimoire/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/customPrefabs/Materials/book.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/customPrefabs/Materials/book.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +23,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Tests/PlayMode/SpellDetectorTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/XRI_Examples/Global/Scripts/PlayQuickSound.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.mathematics@8017b507cc74/Tests/Tests/Shared/TestAffineTransform.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@d4bbf03f941f/Shaders/Lit.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@d4bbf03f941f/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@7e188ec401ea/Runtime/Interaction/XRInteractionManager.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
@@ -115,7 +114,8 @@
       <workItem from="1746610008108" duration="1044000" />
       <workItem from="1746696897443" duration="233000" />
       <workItem from="1746703406345" duration="2517000" />
-      <workItem from="1746781627208" duration="1351000" />
+      <workItem from="1746781627208" duration="2045000" />
+      <workItem from="1746793115849" duration="1563000" />
     </task>
     <servers />
   </component>
