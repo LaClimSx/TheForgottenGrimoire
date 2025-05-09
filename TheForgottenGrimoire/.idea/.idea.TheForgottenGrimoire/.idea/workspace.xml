@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2f91bc6f-9b43-45cf-986d-8e4920fb37ec" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheForgottenGrimoire/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheForgottenGrimoire/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +114,7 @@
       <workItem from="1746696897443" duration="233000" />
       <workItem from="1746703406345" duration="2517000" />
       <workItem from="1746781627208" duration="2045000" />
-      <workItem from="1746793115849" duration="1563000" />
+      <workItem from="1746793115849" duration="4109000" />
     </task>
     <servers />
   </component>
