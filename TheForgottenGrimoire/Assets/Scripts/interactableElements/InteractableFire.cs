@@ -18,7 +18,7 @@ public class InteractableFire : InteractableElement
         if (burning && life > 0) {
             life -= Power;
             life = life < 0 ? 0 : life;
-            print(life);
+            //print(life);
         } else if (life == 0) {
             Destroy(gameObject);
         }

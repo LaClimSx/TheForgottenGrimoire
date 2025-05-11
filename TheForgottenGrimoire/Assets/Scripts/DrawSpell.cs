@@ -55,7 +55,7 @@ public class DrawSpell : MonoBehaviour
 
     void Update()
     {
-        if (!staffGrabableScript.inHand)
+        if (!staffGrabableScript.InHand)
         {
             return;
         }
