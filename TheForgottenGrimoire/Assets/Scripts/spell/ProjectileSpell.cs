@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Fireball : MonoBehaviour
+public class ProjectileSpell : MonoBehaviour
 {
     [SerializeField] private InputActionReference rightTriggerReference;
     [SerializeField] float initialSpeed;

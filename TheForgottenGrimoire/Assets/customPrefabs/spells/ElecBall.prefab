@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 338710383972876844}
   - component: {fileID: 1594510077653092381}
   - component: {fileID: 3448666938829416058}
-  - component: {fileID: 940224085020816014}
   - component: {fileID: 2704389627685130485}
-  - component: {fileID: 5073605219614154344}
+  - component: {fileID: -1486099842905354468}
+  - component: {fileID: -855129404940975627}
   m_Layer: 0
-  m_Name: Fireball
+  m_Name: ElecBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 537102cb285c3674e9d2a16c8b02aafa, type: 2}
+  - {fileID: 2100000, guid: 6a52158c195c63840b6aa78e11ad6663, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,19 +111,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &940224085020816014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7543675435533677650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a426dbb60b2ad24ba4a5fbdc35f0099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  power: 1
 --- !u!54 &2704389627685130485
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151,7 +138,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5073605219614154344
+--- !u!114 &-1486099842905354468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543675435533677650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683d81c283e5e2f4f951aef1f3acbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 1
+--- !u!114 &-855129404940975627
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,5 +163,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b30029f057494d4896ed53b95bfb742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightTriggerReference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  initialSpeed: 250
+  rightTriggerReference: {fileID: 0}
+  initialSpeed: 500

@@ -6,18 +6,32 @@ public class DummyManager : MonoBehaviour
     [SerializeField] private InputActionReference rightTriggerReference;
     [SerializeField] private Transform rightHandTransform;
     [SerializeField] private GameObject fireball;
+    [SerializeField] private GameObject elecball;
+
+    private GameObject toCast;
+    private GameObject castedSpell;
+
+    private bool aimimg;
+
+    private int spellSwitch = 0;
     
     void Update()
     {
-        if (rightTriggerReference.action.triggered)
+        if (rightTriggerReference.action.triggered && !aimimg)
         {
-            castFireball();
+            if (spellSwitch % 2 == 0) toCast = fireball;
+            else toCast = elecball;
+            castProjectileSpell();
+            aimimg = true;
+            spellSwitch++;
+        } else if (aimimg)
+        {
+            aimimg = !castedSpell.GetComponent<ProjectileSpell>().Launched;
         }
     }
 
-    private void castFireball()
+    private void castProjectileSpell()
     {
-        GameObject castFireball = Instantiate(fireball, rightHandTransform.localPosition, rightHandTransform.localRotation);
-        castFireball.GetComponent<Fireball>().launch(new Vector3(0, 0, 1));
+        castedSpell = Instantiate(toCast, rightHandTransform.localPosition, rightHandTransform.localRotation);
     }
 }
