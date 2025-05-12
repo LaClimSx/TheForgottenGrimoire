@@ -91,7 +91,7 @@ public class DrawSpell : MonoBehaviour
                 Debug.Log("detected:" + detected + " score:" + score);
                 OnSpellDetected(detected, score, leftTriggerPressed, leftGripPressed);
             });
-            Destroy(currentTubeRenderer, 1f);
+            Destroy(currentTubeRenderer.gameObject, 1f);
             AddNewTubeRenderer();
             isPinchingReleased = false;
         }

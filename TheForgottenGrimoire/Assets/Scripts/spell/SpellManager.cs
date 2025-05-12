@@ -89,10 +89,12 @@ public class SpellManager : MonoBehaviour
         {
             if (toCast.GetComponent<ProjectileSpell>() != null && castedSpell == null && !triggerDown)
             {
+                print("Instantiating " + toCast.name);
                 castedSpell = Instantiate(toCast, projectileSpawnPoint.localToWorldMatrix.MultiplyPoint3x4(projectileSpawnPoint.localPosition), projectileSpawnPoint.localRotation, projectileSpawnPoint);
             }
-            else if (rightTriggerReference.action.triggered && toCast.GetComponent<ProjectileSpell>() != null && castedSpell == null && !triggerDown)
+            else if (rightTriggerReference.action.triggered && toCast.GetComponent<ProjectileSpell>() != null && castedSpell != null && !triggerDown)
             {
+                print("Launching balls");
                 Destroy(castedSpell);
                 GameObject projectile = Instantiate(toCast, projectileSpawnPoint.localToWorldMatrix.MultiplyPoint3x4(projectileSpawnPoint.localPosition), Quaternion.identity);
                 projectile.GetComponent<ProjectileSpell>().launch(projectileSpawnPoint.forward);
@@ -110,11 +112,12 @@ public class SpellManager : MonoBehaviour
                 liveCubes.Add(Instantiate(toCast, projectileSpawnPoint.localToWorldMatrix.MultiplyPoint3x4(projectileSpawnPoint.localPosition), Quaternion.identity));
                 _spellState = SpellState.Pending;
             }
-            else if (rightTriggerReference.action.ReadValue<float>() > 0.5)
+            else if (rightTriggerReference.action.ReadValue<float>() > 0.5 && !triggerDown)
             {
                 triggerDown = true;
                 if (toCast == flameThrower)
                 {
+                    print("Instantiating " + toCast.name);
                     castedSpell = Instantiate(toCast, leftHand);
                 }
             }
@@ -132,12 +135,12 @@ public class SpellManager : MonoBehaviour
             castedSpell = null;
             _spellState = SpellState.Pending;
         }
-        if (!staff.GetComponent<StaffGrabableScript>().InHand)
-        {
-            Destroy(castedSpell);
-            castedSpell = null;
-            _spellState = SpellState.Pending;
-        }
+        //if (!staff.GetComponent<StaffGrabableScript>().InHand)
+        //{
+        //    Destroy(castedSpell);
+        //    castedSpell = null;
+        //    _spellState = SpellState.Pending;
+        //}
     }
 
     void  CastSpell(SpellType spellType)
