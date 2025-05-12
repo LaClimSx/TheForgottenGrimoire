@@ -100,7 +100,7 @@ public class DrawSpell : MonoBehaviour
 
     private void OnSpellDetected(SpellShape detected, double score, bool pinch, bool grip)
     {
-        if (score < spellScoreThreshold)
+        if ((score < spellScoreThreshold && detected != SpellShape.Infinity && detected != SpellShape.Spiral) || score < 0.35f ) //If the score is too low (0.5 for most shapes, and 0.35 for infinity and spiral)
         {
             Debug.Log("Spell not detected");
             spellManager.SpellState = SpellState.Pending;
@@ -192,8 +192,17 @@ public class DrawSpell : MonoBehaviour
         }
         if (spellType != NoSpell)
         {
-            spellManager.CurrentSpellType = spellType;
-            spellManager.SpellState = SpellState.Casting;
+            if (spellManager.IsSpellUnlocked(spellType))
+            {
+                spellManager.CurrentSpellType = spellType;
+                spellManager.SpellState = SpellState.Casting;
+            }
+            else
+            {
+                Debug.Log($"Spell not unlocked: {spellType}");
+                spellManager.SpellState = SpellState.Pending;
+                return;
+            }
         }
         else
         {

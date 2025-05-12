@@ -33,6 +33,7 @@ public class SpellDetector
         if (numberOfPoints < MinNumberPoints)
         {
             Debug.LogWarning("Not enough points to detect spell");
+            onDetect?.Invoke(SpellShape.NoShape, 0f);
             return;
         }
 
