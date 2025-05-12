@@ -34,26 +34,32 @@ namespace Spells
         Spiral,
         Square,
         Infinity,
-        Triangle
+        Triangle,
+        NoShape
     }
 }
 public class SpellManager : MonoBehaviour
 {
     [SerializeField] private InputActionReference rightTriggerReference;
+    [SerializeField] private GameObject staff;
+    [SerializeField] private Transform leftHand;
+    [SerializeField] private int maxLiveCube = 4;
+    [SerializeField] private Transform projectileSpawnPoint;
+
+    //Spells
     [SerializeField] private GameObject fireball;
     [SerializeField] private GameObject elecball;
     [SerializeField] private GameObject flameThrower;
     [SerializeField] private GameObject cubeCompanion;
-    [SerializeField] private GameObject staff;
 
     private SpellState _spellState = SpellState.Pending;
     private GameObject toCast;
     private GameObject castedSpell;
     private List<GameObject> liveCubes = new List<GameObject>();
-    [SerializeField] private int maxLiveCube = 4;
-    [SerializeField] private Transform projectileSpawnPoint;
-    [SerializeField] private Transform leftHand;
+    
     private bool triggerDown = false;
+
+    private Dictionary<SpellType, bool> unlockedSpells = new Dictionary<SpellType, bool>();
 
     public SpellState SpellState
     {
@@ -79,7 +85,7 @@ public class SpellManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        InitDict(true);
     }
 
     // Update is called once per frame
@@ -195,5 +201,42 @@ public class SpellManager : MonoBehaviour
     {
         if (liveCubes.Contains(cube)) liveCubes.Remove(cube);
         print("live cubes " + liveCubes);
+    }
+
+    void InitDict(bool devCheat = false) //Remove the devCheat argument for release
+    {
+        foreach (SpellType spelltype in System.Enum.GetValues(typeof(SpellType)))
+        {
+            if (spelltype == SpellType.NoSpell)
+            {
+                continue;
+            }
+            unlockedSpells.Add(spelltype, devCheat);
+        }
+    }
+
+    public void unlockSpell(SpellType spellType)
+    {
+        if (unlockedSpells.ContainsKey(spellType))
+        {
+            unlockedSpells[spellType] = true;
+        }
+        else
+        {
+            Debug.LogError("Spell type not found in dictionary: " + spellType);
+        }
+    }
+
+    public bool IsSpellUnlocked(SpellType spellType)
+    {
+        if (unlockedSpells.ContainsKey(spellType))
+        {
+            return unlockedSpells[spellType];
+        }
+        else
+        {
+            Debug.LogError("Spell type not found in dictionary: " + spellType);
+            return false;
+        }
     }
 }
