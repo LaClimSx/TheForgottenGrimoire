@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Spells;
 using UnityEngine;
+using static Spells.SpellType;
 
 namespace Spells
 {
@@ -31,7 +33,8 @@ namespace Spells
         Spiral,
         Square,
         Infinity,
-        Triangle
+        Triangle,
+        NoShape
     }
 }
 public class SpellManager : MonoBehaviour
@@ -58,9 +61,12 @@ public class SpellManager : MonoBehaviour
         set => _currentSpellType = value;
     }
 
+    private Dictionary<SpellType, bool> unlockedSpells = new Dictionary<SpellType, bool>();
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        InitDict(true);
 
     }
 
@@ -75,5 +81,42 @@ public class SpellManager : MonoBehaviour
         //TODO: stuff
         print("casting :" + spellType);
         _spellState = SpellState.Pending;
+    }
+
+    void InitDict(bool devCheat = false) //Remove the devCheat argument for release
+    {
+        foreach (SpellType spelltype in System.Enum.GetValues(typeof(SpellType)))
+        {
+            if (spelltype == SpellType.NoSpell)
+            {
+                continue;
+            }
+            unlockedSpells.Add(spelltype, devCheat);
+        }
+    }
+
+    public void unlockSpell(SpellType spellType)
+    {
+        if (unlockedSpells.ContainsKey(spellType))
+        {
+            unlockedSpells[spellType] = true;
+        }
+        else
+        {
+            Debug.LogError("Spell type not found in dictionary: " + spellType);
+        }
+    }
+
+    public bool IsSpellUnlocked(SpellType spellType)
+    {
+        if (unlockedSpells.ContainsKey(spellType))
+        {
+            return unlockedSpells[spellType];
+        }
+        else
+        {
+            Debug.LogError("Spell type not found in dictionary: " + spellType);
+            return false;
+        }
     }
 }
