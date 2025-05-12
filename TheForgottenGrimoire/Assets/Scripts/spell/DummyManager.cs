@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class DummyManager : MonoBehaviour
 {
@@ -8,22 +9,25 @@ public class DummyManager : MonoBehaviour
     [SerializeField] private GameObject fireball;
     [SerializeField] private GameObject elecball;
     [SerializeField] private GameObject flameThrower;
+    [SerializeField] private GameObject cubeCompanion;
     [SerializeField] private GameObject staff;
 
     private GameObject toCast;
     private GameObject toLaunch;
     private GameObject castedSpell;
+    private List<GameObject> liveCubes = new List<GameObject>();
+    [SerializeField] private int maxLiveCube = 4;
     [SerializeField] private Transform projectileSpawnPoint;
     [SerializeField] private Transform leftHand;
     private bool inCast = false;
 
-    private int spellSwitch = 0;
+    private int spellSwitch = 3;
 
     void Update()
     {
         if (leftButtonXPressed.action.triggered)
         {
-            spellSwitch = ++spellSwitch % 3;
+            spellSwitch = ++spellSwitch % 4;
             switch (spellSwitch)
             {
                 case 0:
@@ -35,6 +39,9 @@ public class DummyManager : MonoBehaviour
                 case 2:
                     toCast = flameThrower;
                     break;
+                case 3:
+                    toCast = cubeCompanion;
+                    break;
                 default:
                     break;
             }
@@ -44,25 +51,31 @@ public class DummyManager : MonoBehaviour
         {
             if (rightTriggerReference.action.ReadValue<float>() > 0.5f && toCast == flameThrower && !inCast)
             {
-                print("flamme throw should be trigger");
                 castedSpell = Instantiate(toCast, leftHand);
                 inCast = true;
             }
+            else if (toCast == cubeCompanion && rightTriggerReference.action.triggered && castedSpell == null)
+            {
+                if (liveCubes.Count >= maxLiveCube)
+                {
+                    GameObject tokill = liveCubes[0];
+                    liveCubes.RemoveAt(0);
+                    Destroy(tokill);
+                }
+                liveCubes.Add(Instantiate(toCast, projectileSpawnPoint.localToWorldMatrix.MultiplyPoint3x4(projectileSpawnPoint.localPosition), Quaternion.identity));
+            }
             else if (inCast && rightTriggerReference.action.ReadValue<float>() <= 0.5f)
             {
-                print("flamme throw should be stopped");
                 inCast = false;
                 Destroy(castedSpell);
                 castedSpell = null;
             }
             else if (rightTriggerReference.action.triggered && toCast != null && castedSpell == null)
             {
-                print("cast projectile");
                 castProjectileSpell();
             }
             else if (castedSpell != null && rightTriggerReference.action.triggered)
             {
-                print("launch projectile");
                 launchCastedProjectileSpell();
                 castedSpell = null;
             } 
@@ -85,5 +98,11 @@ public class DummyManager : MonoBehaviour
     {
         castedSpell = Instantiate(toCast, projectileSpawnPoint.localToWorldMatrix.MultiplyPoint3x4(projectileSpawnPoint.localPosition), projectileSpawnPoint.localRotation, projectileSpawnPoint);
         toLaunch = toCast;
+    }
+
+    public void removeCompanionCube(GameObject cube)
+    {
+        if (liveCubes.Contains(cube)) liveCubes.Remove(cube);
+        print("live cubes " + liveCubes);
     }
 }
