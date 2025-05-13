@@ -14,7 +14,7 @@ public class CubeCompanion : MonoBehaviour
     {
         if (Time.time > death)
         {
-            GameObject.FindWithTag("spellManager").GetComponent<SpellManager>().removeCompanionCube(gameObject);
+            GameObject.FindWithTag("spellManager").GetComponent<SpellManager>().RemoveCompanionCube(gameObject);
             Destroy(gameObject);
         }
     }

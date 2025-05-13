@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &36791595 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3362522714453518095, guid: d5d9169f27282224490673868f26a58a, type: 3}
+  m_PrefabInstance: {fileID: 5700530018673901918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &133980029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -860,6 +865,11 @@ MonoBehaviour:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8991404900652356292, guid: 7bbb1960bab3e75459304488d8d1ffba, type: 3}
   m_PrefabInstance: {fileID: 1944404245}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &707265128 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3658764679719523785, guid: 11e015d8d3b01c44485649afa286b1c8, type: 3}
+  m_PrefabInstance: {fileID: 600895542}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &892038606 stripped
 GameObject:
@@ -2088,6 +2098,50 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 5700530018673901919}
+    - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
+      propertyPath: staff
+      value: 
+      objectReference: {fileID: 1387805522}
+    - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
+      propertyPath: elecball
+      value: 
+      objectReference: {fileID: 7543675435533677650, guid: 13805638823df094381f1230103a4d5d, type: 3}
+    - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
+      propertyPath: fireball
+      value: 
+      objectReference: {fileID: 7543675435533677650, guid: 45241e8e76fd8be4e8ed4ec2eecb202a, type: 3}
+    - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
+      propertyPath: leftHand
+      value: 
+      objectReference: {fileID: 36791595}
+    - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
+      propertyPath: flameThrower
+      value: 
+      objectReference: {fileID: 3656294910338957068, guid: e9fa2b9f261e80d45a22f7659283691b, type: 3}
+    - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
+      propertyPath: cubeCompanion
+      value: 
+      objectReference: {fileID: 3939869114349323532, guid: 5effe73fe3aaa654d93fe69fc2b40bc1, type: 3}
+    - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
+      propertyPath: xrRayInteractor
+      value: 
+      objectReference: {fileID: 1928056211}
+    - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
+      propertyPath: projectileSpawnPoint
+      value: 
+      objectReference: {fileID: 707265128}
+    - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
+      propertyPath: rightTriggerReference
+      value: 
+      objectReference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
+      propertyPath: curveInteractionCasterLeft
+      value: 
+      objectReference: {fileID: 661899323}
+    - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
+      propertyPath: curveInteractionCasterRight
+      value: 
+      objectReference: {fileID: 661899322}
     - target: {fileID: 7725052077638421820, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
       propertyPath: m_Name
       value: XRSpellCaster

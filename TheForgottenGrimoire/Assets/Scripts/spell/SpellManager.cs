@@ -3,6 +3,9 @@ using static Spells.SpellType;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Interactors.Casters;
+using System.Collections;
 
 namespace Spells
 {
@@ -45,6 +48,18 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private Transform leftHand;
     [SerializeField] private int maxLiveCube = 4;
     [SerializeField] private Transform projectileSpawnPoint;
+
+    //Teleportation
+    [SerializeField] private const float smallDistanceTP = 5f;
+    [SerializeField] private const float largeDistanceTP = 10f;
+    [SerializeField] private XRRayInteractor xrRayInteractor;
+
+    //Grab
+    [SerializeField] private const float smallDistanceGrab = 5f;
+    [SerializeField] private const float largeDistanceGrab = 15f;
+    [SerializeField] private CurveInteractionCaster curveInteractionCasterLeft;
+    [SerializeField] private CurveInteractionCaster curveInteractionCasterRight;
+    [SerializeField] private float spaceSpellDuration = 7f;
 
     //Spells
     [SerializeField] private GameObject fireball;
@@ -155,29 +170,21 @@ public class SpellManager : MonoBehaviour
         print("casting :" + spellType);
         switch (spellType)
         {
-            case Fireball:
-                toCast = fireball;
-                break;
-            case Earthball:
+            case Telekinesis:
+                SetGrab(largeDistanceGrab);
+                StartCoroutine(ResetGrab(smallDistanceGrab, spaceSpellDuration));
                 _spellState = SpellState.Pending;
                 break;
-            case ChargeShot:
-                toCast = elecball;
-                break;
-            case WindColumn:
+            case Blinkstep:
+                SetTP(largeDistanceTP);
+                StartCoroutine(ResetTP(smallDistanceTP, spaceSpellDuration));
                 _spellState = SpellState.Pending;
-                break;
-            case Cube:
-                toCast = cubeCompanion;
                 break;
             case Hub:
                 _spellState = SpellState.Pending;
                 break;
-            case Telekinesis:
-                _spellState = SpellState.Pending;
-                break;
-            case Blinkstep:
-                _spellState = SpellState.Pending;
+            case Fireball:
+                toCast = fireball;
                 break;
             case FlameJet:
                 toCast = flameThrower;
@@ -185,10 +192,22 @@ public class SpellManager : MonoBehaviour
             case Emberlight:
                 _spellState = SpellState.Pending;
                 break;
+            case ChargeShot:
+                toCast = elecball;
+                break;
             case ArcHands:
                 _spellState = SpellState.Pending;
                 break;
+            case Earthball:
+                _spellState = SpellState.Pending;
+                break;
+            case Cube:
+                toCast = cubeCompanion;
+                break;
             case HandJet:
+                _spellState = SpellState.Pending;
+                break;
+            case WindColumn:
                 _spellState = SpellState.Pending;
                 break;
             default:
@@ -197,13 +216,53 @@ public class SpellManager : MonoBehaviour
         }
     }
 
-    public void removeCompanionCube(GameObject cube)
+    public void RemoveCompanionCube(GameObject cube)
     {
         if (liveCubes.Contains(cube)) liveCubes.Remove(cube);
         print("live cubes " + liveCubes);
     }
 
-    void InitDict(bool devCheat = false) //Remove the devCheat argument for release
+    private void SetTP(float distance)
+    {
+        if (xrRayInteractor)
+        {
+            xrRayInteractor.velocity = distance;
+            print("Setting teleport distance to " + distance);
+        }
+        else
+        {
+            Debug.LogError("XRRayInteractor is not assigned.");
+        }
+    }
+
+    private IEnumerator ResetTP(float distance = smallDistanceTP, float delay = 7f)
+    {
+        yield return new WaitForSeconds(delay);
+        SetTP(distance);
+    }
+
+
+    private void SetGrab(float distance)
+    {
+        if (curveInteractionCasterLeft && curveInteractionCasterRight)
+        {
+            curveInteractionCasterLeft.castDistance = distance;
+            curveInteractionCasterRight.castDistance = distance;
+            print("Setting grab distance to " + distance);
+        }
+        else
+        {
+            Debug.LogError("CurveInteractionCasters are not assigned.");
+        }
+    }
+
+    private IEnumerator ResetGrab(float distance = smallDistanceGrab, float delay = 7f)
+    {
+        yield return new WaitForSeconds(delay);
+        SetGrab(distance);
+    }
+
+    private void InitDict(bool devCheat = false) //Remove the devCheat argument for release
     {
         foreach (SpellType spelltype in System.Enum.GetValues(typeof(SpellType)))
         {
@@ -215,7 +274,7 @@ public class SpellManager : MonoBehaviour
         }
     }
 
-    public void unlockSpell(SpellType spellType)
+    public void UnlockSpell(SpellType spellType)
     {
         if (unlockedSpells.ContainsKey(spellType))
         {
