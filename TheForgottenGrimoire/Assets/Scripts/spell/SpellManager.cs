@@ -64,6 +64,7 @@ public class SpellManager : MonoBehaviour
     //Spells
     [SerializeField] private GameObject fireball;
     [SerializeField] private GameObject elecball;
+    [SerializeField] private GameObject earthball;
     [SerializeField] private GameObject flameThrower;
     [SerializeField] private GameObject cubeCompanion;
 
@@ -199,7 +200,7 @@ public class SpellManager : MonoBehaviour
                 _spellState = SpellState.Pending;
                 break;
             case Earthball:
-                _spellState = SpellState.Pending;
+                toCast = earthball;
                 break;
             case Cube:
                 toCast = cubeCompanion;
