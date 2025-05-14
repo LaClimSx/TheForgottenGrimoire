@@ -8,6 +8,8 @@ public class HandJets : MonoBehaviour
     [SerializeField] private float projectileSpeed;
     [SerializeField] private Transform leftHand;
     [SerializeField] private Transform rightHand;
+    [SerializeField] private float flightSpeed;
+    [SerializeField] private float jetForceStrength;
 
     private GameObject p1; 
     private GameObject p2;
@@ -17,6 +19,9 @@ public class HandJets : MonoBehaviour
     public Vector3? LeftCollision { get; set; }
     public Vector3? RightCollision { get; set; }
     private bool waitingForCollisions = false;
+    private bool alreadyLaunched = false;
+
+    private Vector3 gravity = new Vector3(0, -9.18f, 0);
 
     private void spawnProjectiles()
     {
@@ -37,7 +42,7 @@ public class HandJets : MonoBehaviour
     {
         Vector3 leftForce = (leftHand.position - LeftCollision ?? Vector3.zero);
         Vector3 rightForce = (rightHand.position - RightCollision ?? Vector3.zero);
-        return leftForce + rightForce;
+        return (leftForce + rightForce).normalized * jetForceStrength;
     }
 
     private void Start()
@@ -66,9 +71,18 @@ public class HandJets : MonoBehaviour
             RightCollision = null;
             waitingForCollisions = false;
         }
-        if (jetForce != null && player.isGrounded)
+        if (jetForce != null && player.isGrounded && alreadyLaunched)
         {
             jetForce = null;
+            alreadyLaunched = false;
+        } 
+        else if (jetForce != null)
+        {
+            print("jet force: "+ jetForce);
+            player.Move(jetForce.Value.normalized * flightSpeed * Time.deltaTime);
+            jetForce += gravity;
+            if (jetForce.Value.y < 9.81f) jetForce = jetForce.Value - new Vector3(0, -9.81f - jetForce.Value.y, 0); 
+            alreadyLaunched=true;
         }
     }   
 }

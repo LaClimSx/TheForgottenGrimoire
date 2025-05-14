@@ -466,6 +466,8 @@ MonoBehaviour:
   projectileSpeed: 1
   leftHand: {fileID: 1239249670}
   rightHand: {fileID: 1956780292}
+  flightSpeed: 1
+  jetForceStrength: 1000
 --- !u!1 &306089191
 GameObject:
   m_ObjectHideFlags: 0
