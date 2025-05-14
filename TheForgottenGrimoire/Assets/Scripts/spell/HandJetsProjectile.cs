@@ -13,8 +13,16 @@ public class HandJetsProjectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (IsLeft) MainSpell.LeftCollision = collision.GetContact(0).point;
-        else MainSpell.RightCollision = collision.GetContact(0).point;
-        Destroy(gameObject);
+        if (!collision.collider.CompareTag("leftHand") && !collision.collider.CompareTag("rightHand"))
+        {
+            if (IsLeft) MainSpell.LeftCollision = collision.GetContact(0).point;
+            else MainSpell.RightCollision = collision.GetContact(0).point;
+            Destroy(gameObject);
+        }
+        else
+        {
+            Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider, true);
+        }
+        //GetComponent<Renderer>().material.color = Color.red;
     }
 }
