@@ -66,6 +66,7 @@ public class HandJets : MonoBehaviour
             Debug.DrawRay(leftHand.position, (LeftCollision - leftHand.position) ?? Vector3.zero, Color.red);
             Debug.DrawRay(rightHand.position, (RightCollision - rightHand.position) ?? Vector3.zero, Color.red);
             jetForce = computeJetForce();
+            print("initial jet force: " + jetForce);
             startflight = Time.time;
             endflight = Time.time + flightTime;
             //GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().AddForce(jetForce * 300 ?? Vector3.zero);
@@ -74,9 +75,12 @@ public class HandJets : MonoBehaviour
             RightCollision = null;
             waitingForCollisions = false;
         }
-        if (jetForce != null && Time.time < endflight)
+        if (jetForce != null && Time.time < endflight && Time.time > startflight)
         {
-            player.Move(jetForce.Value * flightSpeed / Mathf.Pow(Time.time - startflight, 2) * Time.deltaTime);
+            print("time since collision: " + (Time.time - startflight));
+            print("force coef: " + (1 / (Time.time - startflight)) * Time.deltaTime);
+            print("applied motion: " + (jetForce.Value * flightSpeed / (Time.time - startflight)) * Time.deltaTime);
+            player.Move((jetForce.Value * flightSpeed / Mathf.Pow(Time.time - startflight, 1.1f)) * Time.deltaTime);
         }
         else if (Time.time >= endflight)
         {
