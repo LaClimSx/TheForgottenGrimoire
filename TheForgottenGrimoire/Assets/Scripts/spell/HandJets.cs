@@ -9,7 +9,8 @@ public class HandJets : MonoBehaviour
     [SerializeField] private Transform leftHand;
     [SerializeField] private Transform rightHand;
     [SerializeField] private float flightSpeed;
-    [SerializeField] private float jetForceStrength;
+    //[SerializeField] private float jetForceStrength;
+    [SerializeField] private float flightTime;
 
     private GameObject p1; 
     private GameObject p2;
@@ -19,9 +20,9 @@ public class HandJets : MonoBehaviour
     public Vector3? LeftCollision { get; set; }
     public Vector3? RightCollision { get; set; }
     private bool waitingForCollisions = false;
-    private bool alreadyLaunched = false;
 
-    private Vector3 gravity = new Vector3(0, -9.18f, 0);
+    private float startflight;
+    private float endflight = 0;
 
     private void spawnProjectiles()
     {
@@ -42,7 +43,7 @@ public class HandJets : MonoBehaviour
     {
         Vector3 leftForce = (leftHand.position - LeftCollision ?? Vector3.zero);
         Vector3 rightForce = (rightHand.position - RightCollision ?? Vector3.zero);
-        return (leftForce + rightForce).normalized * jetForceStrength;
+        return (leftForce + rightForce).normalized; //* jetForceStrength;
     }
 
     private void Start()
@@ -64,25 +65,22 @@ public class HandJets : MonoBehaviour
             print("right collision: " + RightCollision);
             Debug.DrawRay(leftHand.position, (LeftCollision - leftHand.position) ?? Vector3.zero, Color.red);
             Debug.DrawRay(rightHand.position, (RightCollision - rightHand.position) ?? Vector3.zero, Color.red);
-            jetForce = computeJetForce();            
+            jetForce = computeJetForce();
+            startflight = Time.time;
+            endflight = Time.time + flightTime;
             //GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().AddForce(jetForce * 300 ?? Vector3.zero);
             //GetComponent<Rigidbody>().useGravity = true;
             LeftCollision = null;
             RightCollision = null;
             waitingForCollisions = false;
         }
-        if (jetForce != null && player.isGrounded && alreadyLaunched)
+        if (jetForce != null && Time.time < endflight)
+        {
+            player.Move(jetForce.Value * flightSpeed / Mathf.Pow(Time.time - startflight, 2) * Time.deltaTime);
+        }
+        else if (Time.time >= endflight)
         {
             jetForce = null;
-            alreadyLaunched = false;
-        } 
-        else if (jetForce != null)
-        {
-            print("jet force: "+ jetForce);
-            player.Move(jetForce.Value.normalized * flightSpeed * Time.deltaTime);
-            jetForce += gravity;
-            if (jetForce.Value.y < 9.81f) jetForce = jetForce.Value - new Vector3(0, -9.81f - jetForce.Value.y, 0); 
-            alreadyLaunched=true;
         }
     }   
 }
