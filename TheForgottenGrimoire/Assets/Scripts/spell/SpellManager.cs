@@ -47,7 +47,7 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private GameObject staff;
     [SerializeField] private Transform leftHand;
     [SerializeField] private int maxLiveCube = 4;
-    [SerializeField] private Transform projectileSpawnPoint;
+    [SerializeField] private Transform projectileSpawnPoint;    
 
     //Teleportation
     [SerializeField] private const float smallDistanceTP = 5f;
@@ -67,13 +67,14 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private GameObject earthball;
     [SerializeField] private GameObject flameThrower;
     [SerializeField] private GameObject cubeCompanion;
+    [SerializeField] private GameObject handJets;
 
     private SpellState _spellState = SpellState.Pending;
     private GameObject toCast;
     private GameObject castedSpell;
     private List<GameObject> liveCubes = new List<GameObject>();
     
-    private bool triggerDown = false;
+    private bool spellInUse = false;
 
     private Dictionary<SpellType, bool> unlockedSpells = new Dictionary<SpellType, bool>();
 
@@ -104,21 +105,26 @@ public class SpellManager : MonoBehaviour
         InitDict(true);
     }
 
+    private Vector3 getProjectilSpawnPointInWorldCoord()
+    {
+        return projectileSpawnPoint.localToWorldMatrix.MultiplyPoint3x4(projectileSpawnPoint.localPosition);
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (_spellState == SpellState.Casting)
         {
-            if (toCast.GetComponent<ProjectileSpell>() != null && castedSpell == null && !triggerDown)
+            if (toCast.GetComponent<ProjectileSpell>() != null && castedSpell == null && !spellInUse)
             {
                 print("Instantiating " + toCast.name);
-                castedSpell = Instantiate(toCast, projectileSpawnPoint.localToWorldMatrix.MultiplyPoint3x4(projectileSpawnPoint.localPosition), projectileSpawnPoint.localRotation, projectileSpawnPoint);
+                castedSpell = Instantiate(toCast, getProjectilSpawnPointInWorldCoord(), projectileSpawnPoint.localRotation, projectileSpawnPoint);
             }
-            else if (rightTriggerReference.action.triggered && toCast.GetComponent<ProjectileSpell>() != null && castedSpell != null && !triggerDown)
+            else if (rightTriggerReference.action.triggered && toCast.GetComponent<ProjectileSpell>() != null && castedSpell != null && !spellInUse)
             {
                 print("Launching balls");
                 Destroy(castedSpell);
-                GameObject projectile = Instantiate(toCast, projectileSpawnPoint.localToWorldMatrix.MultiplyPoint3x4(projectileSpawnPoint.localPosition), Quaternion.identity);
+                GameObject projectile = Instantiate(toCast, getProjectilSpawnPointInWorldCoord(), Quaternion.identity);
                 projectile.GetComponent<ProjectileSpell>().launch(projectileSpawnPoint.forward);
                 castedSpell = null;
                 _spellState = SpellState.Pending;
@@ -131,21 +137,43 @@ public class SpellManager : MonoBehaviour
                     liveCubes.RemoveAt(0);
                     Destroy(tokill);
                 }
-                liveCubes.Add(Instantiate(toCast, projectileSpawnPoint.localToWorldMatrix.MultiplyPoint3x4(projectileSpawnPoint.localPosition), Quaternion.identity));
+                liveCubes.Add(Instantiate(toCast, getProjectilSpawnPointInWorldCoord(), Quaternion.identity));
                 _spellState = SpellState.Pending;
             }
-            else if (rightTriggerReference.action.ReadValue<float>() > 0.5 && !triggerDown)
+            else if (toCast == handJets)
             {
-                triggerDown = true;
+                if (!spellInUse)
+                {
+                    print("spawn handjets");
+                    castedSpell = Instantiate(toCast, getProjectilSpawnPointInWorldCoord(), Quaternion.identity);
+                    spellInUse = true;
+                } 
+                else if (rightTriggerReference.action.triggered && !castedSpell.GetComponent<HandJets>().WaitingForCollisions && !castedSpell.GetComponent<HandJets>().ProjectileLaunched)
+                {
+                    print("launch handjets");
+                    castedSpell.GetComponent<HandJets>().launchProjectiles();
+                } 
+                else if ((!castedSpell.GetComponent<HandJets>().WaitingForCollisions && castedSpell.GetComponent<HandJets>().ProjectileLaunched) || castedSpell.GetComponent<HandJets>().CollisionOutOfRange)
+                {
+                    print("destroy handjets");
+                    Destroy(castedSpell);
+                    castedSpell = null;
+                    spellInUse = false;
+                    _spellState= SpellState.Pending;
+                }
+            }
+            else if (rightTriggerReference.action.ReadValue<float>() > 0.5 && !spellInUse)
+            {
+                spellInUse = true;
                 if (toCast == flameThrower)
                 {
                     print("Instantiating " + toCast.name);
                     castedSpell = Instantiate(toCast, leftHand);
                 }
             }
-            else if (triggerDown && rightTriggerReference.action.ReadValue<float>() <= 0.5)
+            else if (spellInUse && rightTriggerReference.action.ReadValue<float>() <= 0.5)
             {
-                triggerDown = false;
+                spellInUse = false;
                 Destroy(castedSpell);
                 castedSpell = null;
                 _spellState = SpellState.Pending;
@@ -156,13 +184,7 @@ public class SpellManager : MonoBehaviour
             Destroy(castedSpell);
             castedSpell = null;
             _spellState = SpellState.Pending;
-        }
-        //if (!staff.GetComponent<StaffGrabableScript>().InHand)
-        //{
-        //    Destroy(castedSpell);
-        //    castedSpell = null;
-        //    _spellState = SpellState.Pending;
-        //}
+        }        
     }
 
     void  CastSpell(SpellType spellType)
@@ -206,7 +228,7 @@ public class SpellManager : MonoBehaviour
                 toCast = cubeCompanion;
                 break;
             case HandJet:
-                _spellState = SpellState.Pending;
+                toCast = handJets;
                 break;
             case WindColumn:
                 _spellState = SpellState.Pending;

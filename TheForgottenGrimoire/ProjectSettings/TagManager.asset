@@ -16,6 +16,7 @@ TagManager:
   - handles
   - conductorManager
   - spellManager
+  - magicStaff
   layers:
   - Default
   - TransparentFX
