@@ -12,6 +12,8 @@ public class HandJets : MonoBehaviour
     //[SerializeField] private float jetForceStrength;
     [SerializeField] private float flightTime;
 
+    public float getFlightTime() { return flightTime; }
+
     private GameObject p1; 
     private GameObject p2;
     private Vector3? jetForce;
@@ -22,16 +24,17 @@ public class HandJets : MonoBehaviour
     public bool WaitingForCollisions { get; private set; } = false;
     public bool ProjectileLaunched { get; private set; } = false;
     public bool CollisionOutOfRange { get; set; } = false;
+    public bool FlightComplete { get; private set; } = false;
 
     private float startflight;
     private float endflight = 0;
 
     private void spawnProjectiles()
     {
-        p1 = Instantiate(projectile, leftHand.position, leftHand.rotation);
+        p1 = Instantiate(projectile, leftHand.position, leftHand.rotation, leftHand);
         p1.GetComponent<HandJetsProjectile>().IsLeft = true;
         p1.GetComponent<HandJetsProjectile>().MainSpell = this;
-        p2 = Instantiate(projectile, rightHand.position, rightHand.rotation);
+        p2 = Instantiate(projectile, rightHand.position, rightHand.rotation, rightHand);
         p2.GetComponent<HandJetsProjectile>().MainSpell = this;
     }
 
@@ -39,6 +42,8 @@ public class HandJets : MonoBehaviour
     {
         p1.GetComponent<HandJetsProjectile>().launch(leftHand.forward, projectileSpeed, projectileRange);
         p2.GetComponent<HandJetsProjectile>().launch(rightHand.forward, projectileSpeed, projectileRange);
+        p1.transform.SetParent(null, true);
+        p2.transform.SetParent(null, true);
         WaitingForCollisions = true;
         ProjectileLaunched = true;
     }
@@ -68,30 +73,26 @@ public class HandJets : MonoBehaviour
         {
             if (LeftCollision != null && RightCollision != null && jetForce == null)
             {
-                print("left collision: " + LeftCollision);
-                print("right collision: " + RightCollision);
                 Debug.DrawRay(leftHand.position, (LeftCollision - leftHand.position) ?? Vector3.zero, Color.red);
                 Debug.DrawRay(rightHand.position, (RightCollision - rightHand.position) ?? Vector3.zero, Color.red);
                 jetForce = computeJetForce();
-                print("initial jet force: " + jetForce);
                 startflight = Time.time;
                 endflight = Time.time + flightTime;
-                //GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>().AddForce(jetForce * 300 ?? Vector3.zero);
-                //GetComponent<Rigidbody>().useGravity = true;
                 LeftCollision = null;
                 RightCollision = null;
                 WaitingForCollisions = false;
             }
             if (jetForce != null && Time.time < endflight && Time.time > startflight)
             {
-                print("time since collision: " + (Time.time - startflight));
-                print("force coef: " + (1 / (Time.time - startflight)) * Time.deltaTime);
-                print("applied motion: " + (jetForce.Value * flightSpeed / (Time.time - startflight)) * Time.deltaTime);
+                //print("time since collision: " + (Time.time - startflight));
+                //print("force coef: " + (1 / (Time.time - startflight)) * Time.deltaTime);
+                //print("applied motion: " + (jetForce.Value * flightSpeed / (Time.time - startflight)) * Time.deltaTime);
                 player.Move((jetForce.Value * flightSpeed / Mathf.Pow(Time.time - startflight, 1.1f)) * Time.deltaTime);
             }
-            else if (Time.time >= endflight)
+            else if (jetForce != null && Time.time >= endflight)
             {
                 jetForce = null;
+                FlightComplete = true;
             }
         }
         else print("Collision out of range");

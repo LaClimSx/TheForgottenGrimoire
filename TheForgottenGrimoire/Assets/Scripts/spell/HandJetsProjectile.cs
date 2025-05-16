@@ -7,17 +7,27 @@ public class HandJetsProjectile : MonoBehaviour
     public HandJets MainSpell { get; set; }
     private float range;
     private Vector3 launchPoint;
+    private bool launched = false;
+
+    private void Start()
+    {
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll; 
+        GetComponent<Collider>().enabled = false;
+    }
 
     public void launch(Vector3 direction, float speed, float range)
     {
+        GetComponent<Collider>().enabled = true;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         this.range = range;
-        launchPoint = transform.position;
+        launchPoint = transform.position;        
         GetComponent<Rigidbody>().linearVelocity = direction * speed;
+        launched = true;
     }
 
     private void Update()
     {
-        if (Vector3.Distance(launchPoint, transform.position) > range)
+        if (launched && Vector3.Distance(launchPoint, transform.position) > range)
         {
             MainSpell.CollisionOutOfRange = true;
             Destroy(gameObject);
@@ -31,7 +41,6 @@ public class HandJetsProjectile : MonoBehaviour
             !collision.collider.CompareTag("magicStaff") && 
             !collision.collider.CompareTag("Player"))
         {
-            print("handjets colliding with " + collision.collider.name);
             if (IsLeft) MainSpell.LeftCollision = collision.GetContact(0).point;
             else MainSpell.RightCollision = collision.GetContact(0).point;
             Destroy(gameObject);

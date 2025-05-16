@@ -141,7 +141,7 @@ public class SpellManager : MonoBehaviour
                 _spellState = SpellState.Pending;
             }
             else if (toCast == handJets)
-            {
+            {               
                 if (!spellInUse)
                 {
                     print("spawn handjets");
@@ -150,10 +150,9 @@ public class SpellManager : MonoBehaviour
                 } 
                 else if (rightTriggerReference.action.triggered && !castedSpell.GetComponent<HandJets>().WaitingForCollisions && !castedSpell.GetComponent<HandJets>().ProjectileLaunched)
                 {
-                    print("launch handjets");
                     castedSpell.GetComponent<HandJets>().launchProjectiles();
                 } 
-                else if ((!castedSpell.GetComponent<HandJets>().WaitingForCollisions && castedSpell.GetComponent<HandJets>().ProjectileLaunched) || castedSpell.GetComponent<HandJets>().CollisionOutOfRange)
+                else if (castedSpell.GetComponent<HandJets>().FlightComplete || castedSpell.GetComponent<HandJets>().CollisionOutOfRange)
                 {
                     print("destroy handjets");
                     Destroy(castedSpell);
@@ -167,7 +166,6 @@ public class SpellManager : MonoBehaviour
                 spellInUse = true;
                 if (toCast == flameThrower)
                 {
-                    print("Instantiating " + toCast.name);
                     castedSpell = Instantiate(toCast, leftHand);
                 }
             }
