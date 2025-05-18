@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -855129404940975627}
   m_Layer: 0
   m_Name: ElecBall
-  m_TagString: Untagged
+  m_TagString: Elecball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

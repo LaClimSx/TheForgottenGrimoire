@@ -13,7 +13,7 @@ public class ProjectileSpell : MonoBehaviour
         FlameThrower,
         Elec,
         Wind,
-        earth,
+        Earth,
     }
     public ProjectileType Type { get; private set; }
 
@@ -38,6 +38,12 @@ public class ProjectileSpell : MonoBehaviour
                 break;
             case "FlameThrower":
                 Type=ProjectileType.FlameThrower;
+                break;
+            case "Elecball":
+                Type = ProjectileType.Elec;
+                break;
+            case "Earthball":
+                Type = ProjectileType.Earth;
                 break;
             default:
                 Debug.LogError("Unknown projectile");

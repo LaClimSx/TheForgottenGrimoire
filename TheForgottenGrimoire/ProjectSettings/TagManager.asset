@@ -19,6 +19,8 @@ TagManager:
   - magicStaff
   - Fireball
   - FlameThrower
+  - Elecball
+  - Earthball
   layers:
   - Default
   - TransparentFX
