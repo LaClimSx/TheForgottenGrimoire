@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class InteractableCandles : MonoBehaviour
+public class InteractableTorch : MonoBehaviour
 {
-
     private Light light;
-    [SerializeField] private bool lightable;
+    private bool is_alighten;
     [SerializeField] private bool original_light;
     // private int test;
 
@@ -20,9 +19,11 @@ public class InteractableCandles : MonoBehaviour
     {
         print("bonked");
         InteractorElement interactor = other.gameObject.GetComponent<InteractorFire>();
-        if (interactor != null & lightable) {
+        if (interactor != null & !is_alighten)
+        {
             print($"bonked interactor {interactor.Type}");
             light.enabled = true;
+            is_alighten = true;
         }
     }
 }
