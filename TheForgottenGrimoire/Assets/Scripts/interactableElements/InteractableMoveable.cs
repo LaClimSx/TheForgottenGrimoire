@@ -17,8 +17,8 @@ public class InteractableMoveable : InteractableElement
 
     private void OnCollisionEnter(Collision collision)
     {
-        InteractorElement interactor = collision.gameObject.GetComponent<InteractorElement>();
-        if (interactor != null && interactor.Type == InteractorElement.InteractorType.Wind)
+        InteractorElement interactor = collision.gameObject.GetComponent<InteractorWind>();
+        if (interactor != null)
         {
             Vector3 dir = collision.GetContact(0).normal;
             GetComponent<Rigidbody>().AddForceAtPosition(interactor.Power * dir, collision.GetContact(0).point);
