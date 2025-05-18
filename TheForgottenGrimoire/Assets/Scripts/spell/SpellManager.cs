@@ -68,6 +68,7 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private GameObject flameThrower;
     [SerializeField] private GameObject cubeCompanion;
     [SerializeField] private GameObject handJets;
+    [SerializeField] private GameObject palpatine;
 
     private SpellState _spellState = SpellState.Pending;
     private GameObject toCast;
@@ -168,6 +169,10 @@ public class SpellManager : MonoBehaviour
                 {
                     castedSpell = Instantiate(toCast, leftHand);
                 }
+                else if (toCast == palpatine)
+                {
+                    castedSpell = Instantiate(toCast, leftHand.position, leftHand.rotation, leftHand);
+                }
             }
             else if (spellInUse && rightTriggerReference.action.ReadValue<float>() <= 0.5)
             {
@@ -217,7 +222,7 @@ public class SpellManager : MonoBehaviour
                 toCast = elecball;
                 break;
             case ArcHands:
-                _spellState = SpellState.Pending;
+                toCast = palpatine;                
                 break;
             case Earthball:
                 toCast = earthball;

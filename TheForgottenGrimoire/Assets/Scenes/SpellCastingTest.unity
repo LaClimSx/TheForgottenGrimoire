@@ -1069,7 +1069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7944433677460596849, guid: d5d9169f27282224490673868f26a58a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.696
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 7944433677460596849, guid: d5d9169f27282224490673868f26a58a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2045,11 +2045,15 @@ PrefabInstance:
     - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
       propertyPath: leftHand
       value: 
-      objectReference: {fileID: 1239249670}
+      objectReference: {fileID: 2137798150}
     - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
       propertyPath: earthball
       value: 
       objectReference: {fileID: 7543675435533677650, guid: d4819c83bad11da43b437b501509f67a, type: 3}
+    - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
+      propertyPath: palpatine
+      value: 
+      objectReference: {fileID: 4081963641266499239, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
     - target: {fileID: 6762466594904618122, guid: bcdd26528018c3f4bb84e1a068a70102, type: 3}
       propertyPath: flameThrower
       value: 
@@ -2280,6 +2284,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2458129905924833986, guid: 36eb64f3a58b2374d9a8bbde63c47a2b, type: 3}
   m_PrefabInstance: {fileID: 184598547517527508}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2137798150 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1858397794302332148, guid: d5d9169f27282224490673868f26a58a, type: 3}
+  m_PrefabInstance: {fileID: 833444373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &184598547517527508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2475,6 +2484,75 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2057787a0979a014ea62275c75053dc9, type: 3}
+--- !u!1001 &4105630899655947249
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1096095260598337858, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+      propertyPath: lightningLifeSpan
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096095260598337858, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+      propertyPath: lightningSpawnInterval
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206842557180853251, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.8380666
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206842557180853251, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0569395
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206842557180853251, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206842557180853251, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206842557180853251, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206842557180853251, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206842557180853251, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206842557180853251, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206842557180853251, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206842557180853251, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081963641266499239, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+      propertyPath: m_Name
+      value: Palpatine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081963641266499239, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
 --- !u!1001 &4451604005712733022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2758,3 +2836,4 @@ SceneRoots:
   - {fileID: 124245121}
   - {fileID: 1100658740}
   - {fileID: 4093019949751857435}
+  - {fileID: 4105630899655947249}

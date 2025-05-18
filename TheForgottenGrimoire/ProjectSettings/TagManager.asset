@@ -17,6 +17,8 @@ TagManager:
   - conductorManager
   - spellManager
   - magicStaff
+  - Fireball
+  - FlameThrower
   layers:
   - Default
   - TransparentFX
