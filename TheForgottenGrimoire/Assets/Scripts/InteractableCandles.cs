@@ -36,4 +36,9 @@ public class InteractableCandles : MonoBehaviour
             light.enabled = false;
         }
     }
+
+    public bool IsLit()
+    {
+        return light != null && light.enabled;
+    }
 }
