@@ -11,6 +11,10 @@ public class Managerlvl1candles2 : MonoBehaviour
     [SerializeField] private InteractableCandles solutionCandle2;
     [SerializeField] private InteractableCandles solutionCandle3;
 
+    [SerializeField] private DoorManager door;
+    [SerializeField] private SpellManager spellManager;
+    private bool hasWon = false;
+
     void Start()
     {
         // Get all child InteractableCandles only once
@@ -21,7 +25,8 @@ public class Managerlvl1candles2 : MonoBehaviour
 
     void Update()
     {
-        if (Time.frameCount % 100 != 0) return;
+        // if (Time.frameCount == 100) hasWon = true;
+        if (hasWon) return;
         if (lights == null || lights.Length == 0)
         {
             print("update null check");
@@ -32,7 +37,7 @@ public class Managerlvl1candles2 : MonoBehaviour
         // {
         //     print("light : " + item + " is lit ? " + item.IsLit());
         // }   
-        
+
 
         // Get all candles that are currently lit
         InteractableCandles[] litCandles = lights.Where(c => c.IsLit()).ToArray();
@@ -50,6 +55,8 @@ public class Managerlvl1candles2 : MonoBehaviour
             if (hasAllSolutionCandles)
             {
                 Debug.Log("Victory! Only the correct 3 candles are lit.");
+                hasWon = true;
+                door.OpenDoor();
             }
             else
             {
@@ -81,5 +88,10 @@ public class Managerlvl1candles2 : MonoBehaviour
         }
     }
 
+    public void unlockFireSpell()
+    {
+        print("unlocking fireball");
+        spellManager.unlockSpell(Spells.SpellType.Fireball);
+    }
 
 }
