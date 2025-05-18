@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6762466594904618122}
   m_Layer: 0
   m_Name: XRSpellCaster
-  m_TagString: Untagged
+  m_TagString: spellManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,3 +70,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 302d5cec949d6d847adf60a5d46eb040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightTriggerReference: {fileID: 0}
+  staff: {fileID: 0}
+  leftHand: {fileID: 0}
+  maxLiveCube: 4
+  projectileSpawnPoint: {fileID: 0}
+  xrRayInteractor: {fileID: 0}
+  curveInteractionCasterLeft: {fileID: 0}
+  curveInteractionCasterRight: {fileID: 0}
+  spaceSpellDuration: 7
+  fireball: {fileID: 0}
+  elecball: {fileID: 0}
+  earthball: {fileID: 0}
+  flameThrower: {fileID: 0}
+  cubeCompanion: {fileID: 0}
+  handJets: {fileID: 0}
+  palpatine: {fileID: 0}

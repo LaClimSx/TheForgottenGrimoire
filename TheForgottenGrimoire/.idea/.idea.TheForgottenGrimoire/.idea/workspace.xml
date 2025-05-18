@@ -15,10 +15,12 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/DrawSpell.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/pages.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/spell/SpellDetector.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Tests/PlayMode/SpellDetectorTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/XRI_Examples/Global/Scripts/PlayQuickSound.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.mathematics@8017b507cc74/Tests/Tests/Shared/TestAffineTransform.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@d4bbf03f941f/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.interaction.toolkit@7e188ec401ea/Runtime/Interaction/XRInteractionManager.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
@@ -105,6 +107,12 @@
       <workItem from="1743670780420" duration="353000" />
       <workItem from="1743671926682" duration="840000" />
       <workItem from="1743949364502" duration="1552000" />
+      <workItem from="1745760019393" duration="39000" />
+      <workItem from="1746610008108" duration="1044000" />
+      <workItem from="1746696897443" duration="233000" />
+      <workItem from="1746703406345" duration="2517000" />
+      <workItem from="1746781627208" duration="2045000" />
+      <workItem from="1746793115849" duration="4109000" />
     </task>
     <servers />
   </component>

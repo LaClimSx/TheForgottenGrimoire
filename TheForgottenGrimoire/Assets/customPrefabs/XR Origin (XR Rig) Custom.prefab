@@ -778,7 +778,7 @@ GameObject:
   - component: {fileID: 5158628759069277844}
   m_Layer: 2
   m_Name: XR Origin (XR Rig) Custom
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -958,7 +958,7 @@ GameObject:
   - component: {fileID: 7224091069073751422}
   m_Layer: 0
   m_Name: Left Controller
-  m_TagString: Untagged
+  m_TagString: leftHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1275,7 +1275,7 @@ GameObject:
   - component: {fileID: 7072312759481468159}
   m_Layer: 0
   m_Name: Right Controller
-  m_TagString: Untagged
+  m_TagString: rightHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
