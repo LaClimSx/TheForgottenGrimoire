@@ -43,10 +43,9 @@ public class pages : MonoBehaviour
         
 
         if (!everythingInstancied) return;
-        leftPage.hoverEntered.AddListener(OnLeftHoverEntered);
-        leftPage.hoverExited.AddListener(OnLeftHoverExited);
-        rightPage.hoverEntered.AddListener(OnRightHoverEntered);
-        rightPage.hoverExited.AddListener(OnRightHoverExited);
+        
+        leftPage.selectExited.AddListener(_ => ChangePage(true));
+        rightPage.selectExited.AddListener(_ => ChangePage(false));
     }
 
     private void OnDisable()
@@ -54,10 +53,8 @@ public class pages : MonoBehaviour
         pinchAction.action.Disable();
 
         if (!everythingInstancied) return;
-        leftPage.hoverEntered.RemoveListener(OnLeftHoverEntered);
-        leftPage.hoverExited.RemoveListener(OnLeftHoverExited);
-        rightPage.hoverEntered.RemoveListener(OnRightHoverEntered);
-        rightPage.hoverExited.RemoveListener(OnRightHoverExited);
+        leftPage.selectExited.RemoveListener(_ => ChangePage(true));
+        rightPage.selectExited.RemoveListener(_ => ChangePage(false));
     }
 
     private void Update()
@@ -74,13 +71,6 @@ public class pages : MonoBehaviour
             }
         }
     }
-
-    private void OnLeftHoverEntered(HoverEnterEventArgs args) => leftHovering = true;
-    private void OnLeftHoverExited(HoverExitEventArgs args) => leftHovering = false;
-
-    private void OnRightHoverEntered(HoverEnterEventArgs args) => rightHovering = true;
-
-    private void OnRightHoverExited(HoverExitEventArgs args) => rightHovering = false;
 
     private void ChangePage(bool left)
     {
