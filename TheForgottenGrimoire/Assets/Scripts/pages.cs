@@ -27,22 +27,10 @@ public class pages : MonoBehaviour
 
     private void OnEnable()
     {
-        
         everythingInstancied = leftPageRenderer != null && rightPageRenderer != null && pageImages.Length > 0 & leftPage != null && rightPage != null;
-
-        if (everythingInstancied)
-        {
-            UpdateDisplayPage();
-        }
-        else {
-            Debug.LogError($"Error {leftPageRenderer} and {rightPageRenderer} are required and at least 1 page is needed {pageImages.Length}. {leftPageRenderer} and {rightPageRenderer} are required.");
-        }
         
+        UpdateDisplayPage();
         pinchAction.action.Enable();
-        
-        
-
-        if (!everythingInstancied) return;
         
         leftPage.selectExited.AddListener(_ => ChangePage(true));
         rightPage.selectExited.AddListener(_ => ChangePage(false));
@@ -50,9 +38,9 @@ public class pages : MonoBehaviour
 
     private void OnDisable()
     {
-        pinchAction.action.Disable();
-
         if (!everythingInstancied) return;
+        
+        pinchAction.action.Disable();
         leftPage.selectExited.RemoveListener(_ => ChangePage(true));
         rightPage.selectExited.RemoveListener(_ => ChangePage(false));
     }
