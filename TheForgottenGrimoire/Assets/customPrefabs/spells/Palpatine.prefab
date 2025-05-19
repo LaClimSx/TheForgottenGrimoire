@@ -206,6 +206,7 @@ MonoBehaviour:
   lightningLifeSpan: 0.5
   lightningSpawnInterval: 0.05
   lightningResolution: 8
+  lightning: {fileID: 5929932674151604122, guid: 58495c28c27d6b54cb6a4f6ee8a2dd66, type: 3}
   maxDisplacement: 0.15
 --- !u!54 &4589596181683298403
 Rigidbody:

@@ -4,6 +4,7 @@ using UnityEditor;
 public class InteractableFire : InteractableElement
 {
     [SerializeField] private float life = 50f;
+    [SerializeField] private GameObject particlesPrefab;
     private GameObject particles;     
     private bool burning;
 
@@ -35,8 +36,8 @@ public class InteractableFire : InteractableElement
             burning = true;
             Power += interactor.Power;
             //GetComponent<Renderer>().material.color = Color.red;
-            GameObject particlesPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/customPrefabs/tests/fireParticles.prefab");
-            print("prefab " + particlesPrefab);
+            //GameObject particlesPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/customPrefabs/tests/fireParticles.prefab");
+            //print("prefab " + particlesPrefab);
             particles = Instantiate(particlesPrefab, transform);
         }
     }

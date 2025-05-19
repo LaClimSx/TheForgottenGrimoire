@@ -7,7 +7,7 @@ public class Palpatine : MonoBehaviour
     [SerializeField] private float lightningLifeSpan;
     [SerializeField] private float lightningSpawnInterval;
     [SerializeField] private int lightningResolution;
-    private GameObject lightning;
+    [SerializeField] private GameObject lightning;
     private float nextSpawn;
     private (float x, float y) hitBoxEndPlanSize = (1f, 0.15f);
 
@@ -30,10 +30,10 @@ public class Palpatine : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        lightning = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/customPrefabs/Elements/lightning.prefab");    
-    }
+    //private void Awake()
+    //{
+    //    lightning = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/customPrefabs/Elements/lightning.prefab");    
+    //}
 
     private void Start()
     {
@@ -79,9 +79,7 @@ public class Palpatine : MonoBehaviour
     private Vector3 randomEndPoint()
     {
         (float x, float y) randPoint = (Random.Range(-hitBoxEndPlanSize.x, hitBoxEndPlanSize.x), Random.Range(-hitBoxEndPlanSize.y, hitBoxEndPlanSize.y));
-        print("Random point in plane: " + randPoint);
         Vector3 endPointLocal = new Vector3(randPoint.x, randPoint.y, 3);
-        print("Random point in local space: " + endPointLocal);
         return transform.localToWorldMatrix.MultiplyPoint3x4(endPointLocal);
     }
 
