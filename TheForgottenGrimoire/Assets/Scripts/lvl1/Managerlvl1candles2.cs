@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Spells;
 using UnityEngine;
 
 public class Managerlvl1candles2 : MonoBehaviour
@@ -14,6 +15,7 @@ public class Managerlvl1candles2 : MonoBehaviour
     [SerializeField] private DoorManager door;
     [SerializeField] private SpellManager spellManager;
     private bool hasWon = false;
+    private bool allSpellsUnlocked = false;
 
     void Start()
     {
@@ -26,7 +28,15 @@ public class Managerlvl1candles2 : MonoBehaviour
     void Update()
     {
         // if (Time.frameCount == 100) hasWon = true;
-        if (hasWon) return;
+        if (hasWon)
+        {
+            if (!allSpellsUnlocked)
+            {
+                allSpellsUnlocked = true;
+                UnlockAllSpells();
+            }
+            return;
+        }
         if (lights == null || lights.Length == 0)
         {
             print("update null check");
@@ -91,7 +101,18 @@ public class Managerlvl1candles2 : MonoBehaviour
     public void unlockFireSpell()
     {
         print("unlocking fireball");
-        spellManager.unlockSpell(Spells.SpellType.Fireball);
+        spellManager.UnlockSpell(Spells.SpellType.Fireball);
+    }
+
+    public void UnlockAllSpells()
+    {
+        foreach (SpellType spelltype in System.Enum.GetValues(typeof(SpellType)))
+        {
+            if (spelltype != SpellType.NoSpell)
+            {
+                spellManager.UnlockSpell(spelltype);
+            }
+        }
     }
 
 }
