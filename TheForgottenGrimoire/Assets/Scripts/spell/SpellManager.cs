@@ -13,6 +13,7 @@ namespace Spells
     {
         Pending,
         Drawing,
+        CastSuccessfull,
         Casting
     }
     public enum SpellType
@@ -46,6 +47,7 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private InputActionReference rightTriggerReference;
     [SerializeField] private GameObject staff;
     [SerializeField] private Transform leftHand;
+    [SerializeField] private Transform rightHand;
     [SerializeField] private int maxLiveCube = 4;
     [SerializeField] private Transform projectileSpawnPoint;    
 
@@ -69,6 +71,17 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private GameObject cubeCompanion;
     [SerializeField] private GameObject handJets;
     [SerializeField] private GameObject palpatine;
+    [SerializeField] private GameObject windColumn;
+
+    //Cast successfull animation
+    [SerializeField] private GameObject fireSuccess;
+    [SerializeField] private GameObject elecSuccess;
+    [SerializeField] private GameObject earthSuccess;
+    [SerializeField] private GameObject windSuccess;
+    [SerializeField] private GameObject spaceSuccess;
+    [SerializeField] private float minAnimationDuration;
+    private GameObject currentAnimation;
+    private float actualCastTime;
 
     private SpellState _spellState = SpellState.Pending;
     private GameObject toCast;
@@ -102,7 +115,7 @@ public class SpellManager : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
+    {        
         InitDict(true);
     }
 
@@ -114,11 +127,63 @@ public class SpellManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_spellState == SpellState.Casting)
+        if (actualCastTime < Time.time && _spellState == SpellState.CastSuccessfull)
+        {            
+            _spellState = SpellState.Casting;
+        }
+
+        if (_spellState == SpellState.CastSuccessfull)
+        {
+            actualCastTime = Time.time + minAnimationDuration;
+            switch (_currentSpellType)
+            {                
+                case SpellType.ArcHands:
+                    currentAnimation = Instantiate(elecSuccess, leftHand);
+                    break;
+                case SpellType.Blinkstep:
+                    currentAnimation = Instantiate(spaceSuccess, rightHand);
+                    break;
+                case SpellType.ChargeShot:
+                    currentAnimation = Instantiate(elecSuccess, getProjectilSpawnPointInWorldCoord(), Quaternion.identity, projectileSpawnPoint);
+                    break;
+                case SpellType.Cube:
+                    currentAnimation = Instantiate(earthSuccess, getProjectilSpawnPointInWorldCoord(), Quaternion.identity, projectileSpawnPoint);
+                    break;
+                case SpellType.Earthball:
+                    currentAnimation = Instantiate(earthSuccess, getProjectilSpawnPointInWorldCoord(), Quaternion.identity, projectileSpawnPoint);
+                    break;
+                case SpellType.Emberlight:
+                    currentAnimation = Instantiate(fireSuccess, getProjectilSpawnPointInWorldCoord(), Quaternion.identity, projectileSpawnPoint);
+                    break;
+                case SpellType.Fireball:
+                    currentAnimation = Instantiate(fireSuccess, getProjectilSpawnPointInWorldCoord(), Quaternion.identity, projectileSpawnPoint);
+                    break;
+                case SpellType.FlameJet:
+                    currentAnimation = Instantiate(fireSuccess, leftHand);
+                    break;
+                case SpellType.HandJet:
+                    currentAnimation = Instantiate(windSuccess, GameObject.FindGameObjectWithTag("Player").transform);
+                    break;
+                case SpellType.Hub:
+                    currentAnimation = Instantiate(spaceSuccess, GameObject.FindGameObjectWithTag("Player").transform);
+                    break;
+                case SpellType.Telekinesis:
+                    currentAnimation = Instantiate(spaceSuccess, rightHand);
+                    break;
+                case SpellType.WindColumn:
+                    currentAnimation = Instantiate(windSuccess, getProjectilSpawnPointInWorldCoord(), Quaternion.identity, projectileSpawnPoint);
+                    break;
+                case SpellType.NoSpell:
+                    actualCastTime = 0f;
+                    break;
+            }
+        }
+        else if (_spellState == SpellState.Casting)
         {
             if (toCast.GetComponent<ProjectileSpell>() != null && castedSpell == null && !spellInUse)
             {
                 print("Instantiating " + toCast.name);
+                Destroy(currentAnimation);
                 castedSpell = Instantiate(toCast, getProjectilSpawnPointInWorldCoord(), projectileSpawnPoint.localRotation, projectileSpawnPoint);
             }
             else if (rightTriggerReference.action.triggered && toCast.GetComponent<ProjectileSpell>() != null && castedSpell != null && !spellInUse)
@@ -138,6 +203,7 @@ public class SpellManager : MonoBehaviour
                     liveCubes.RemoveAt(0);
                     Destroy(tokill);
                 }
+                Destroy(currentAnimation);
                 liveCubes.Add(Instantiate(toCast, getProjectilSpawnPointInWorldCoord(), Quaternion.identity));
                 _spellState = SpellState.Pending;
             }
@@ -146,6 +212,7 @@ public class SpellManager : MonoBehaviour
                 if (!spellInUse)
                 {
                     print("spawn handjets");
+                    Destroy(currentAnimation);
                     castedSpell = Instantiate(toCast, getProjectilSpawnPointInWorldCoord(), Quaternion.identity);
                     spellInUse = true;
                 } 
@@ -164,6 +231,7 @@ public class SpellManager : MonoBehaviour
             }
             else if (rightTriggerReference.action.ReadValue<float>() > 0.5 && !spellInUse)
             {
+                Destroy(currentAnimation);
                 spellInUse = true;
                 if (toCast == flameThrower)
                 {
@@ -172,6 +240,10 @@ public class SpellManager : MonoBehaviour
                 else if (toCast == palpatine)
                 {
                     castedSpell = Instantiate(toCast, leftHand.position, leftHand.rotation, leftHand);
+                }
+                else if (toCast == windColumn)
+                {
+                    castedSpell= Instantiate(toCast, leftHand.position, leftHand.rotation, leftHand);
                 }
             }
             else if (spellInUse && rightTriggerReference.action.ReadValue<float>() <= 0.5)
@@ -194,15 +266,18 @@ public class SpellManager : MonoBehaviour
     {
         //TODO: stuff
         print("casting :" + spellType);
+        _spellState = SpellState.CastSuccessfull;
         switch (spellType)
         {
             case Telekinesis:
                 SetGrab(largeDistanceGrab);
+                StartCoroutine(spaceAnimation());
                 StartCoroutine(ResetGrab(smallDistanceGrab, spaceSpellDuration));
                 _spellState = SpellState.Pending;
                 break;
             case Blinkstep:
                 SetTP(largeDistanceTP);
+                StartCoroutine(spaceAnimation());
                 StartCoroutine(ResetTP(smallDistanceTP, spaceSpellDuration));
                 _spellState = SpellState.Pending;
                 break;
@@ -234,7 +309,7 @@ public class SpellManager : MonoBehaviour
                 toCast = handJets;
                 break;
             case WindColumn:
-                _spellState = SpellState.Pending;
+                toCast = windColumn;
                 break;
             default:
                 _spellState = SpellState.Pending;
@@ -323,5 +398,15 @@ public class SpellManager : MonoBehaviour
             Debug.LogError("Spell type not found in dictionary: " + spellType);
             return false;
         }
+    }
+
+    private IEnumerator spaceAnimation()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Vector3 spawnPoint = player.transform.position;
+        spawnPoint.y = 0f;
+        currentAnimation = Instantiate(spaceSuccess, spawnPoint, Quaternion.identity, player.transform);
+        yield return new WaitForSeconds(minAnimationDuration);
+        Destroy(currentAnimation);
     }
 }

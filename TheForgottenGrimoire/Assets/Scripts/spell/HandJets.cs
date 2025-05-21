@@ -96,5 +96,13 @@ public class HandJets : MonoBehaviour
             }
         }
         else print("Collision out of range");
-    }   
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("grimoire"))
+        {
+            Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
+        }
+    }
 }

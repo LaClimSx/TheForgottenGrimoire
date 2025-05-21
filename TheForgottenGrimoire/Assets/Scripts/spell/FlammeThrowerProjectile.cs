@@ -18,7 +18,11 @@ public class FlammeThrowerProjectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.GetComponent<InteractorFire>() == null && !collision.collider.CompareTag("leftHand"))
+        if (collision.collider.CompareTag("grimoire"))
+        {
+            Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
+        }
+        else if (collision.collider.gameObject.GetComponent<InteractorFire>() == null && !collision.collider.CompareTag("leftHand"))
         {
             Destroy(gameObject);
         }
