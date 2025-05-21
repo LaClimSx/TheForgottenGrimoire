@@ -41,4 +41,9 @@ public class InteractableCandles : MonoBehaviour
     {
         return light != null && light.enabled;
     }
+
+    public void makeLightable()
+    {
+        lightable = true;
+    }
 }

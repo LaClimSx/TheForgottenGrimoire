@@ -115,8 +115,8 @@ public class SpellManager : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {        
-        InitDict(true);
+    {
+        InitDict(true); // true to unlock every spells at the beginning -- debug purposes
     }
 
     private Vector3 getProjectilSpawnPointInWorldCoord()

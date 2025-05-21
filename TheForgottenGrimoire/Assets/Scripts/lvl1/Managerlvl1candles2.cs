@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Spells;
 using UnityEngine;
@@ -15,26 +14,51 @@ public class Managerlvl1candles2 : MonoBehaviour
     [SerializeField] private DoorManager door;
     [SerializeField] private SpellManager spellManager;
     private bool hasWon = false;
-    private bool allSpellsUnlocked = false;
+    // private bool allSpellsUnlocked = false;
+
+    // 2nd part of the puzzle (unlock flamethrower)
+    [SerializeField] private InteractableCandles extraCandle1;
+    [SerializeField] private InteractableCandles extraCandle2;
+    [SerializeField] private InteractableCandles extraCandle3;
+    [SerializeField] private InteractableCandles extraCandle4;
+    [SerializeField] private InteractableCandles extraCandle5;
+    private InteractableCandles[] extraLights;
+    private bool initExtra = false;
+    private bool hasWon2 = false;
 
     void Start()
     {
-        // Get all child InteractableCandles only once
+        // Get 2nd part children InteractableCandles 
         lights = GetComponentsInChildren<InteractableCandles>();
-
-        print("end of start, lights length = " + lights.Length);
+        extraLights = new[] { extraCandle1, extraCandle2, extraCandle3, extraCandle4, extraCandle5 };
+        
     }
 
     void Update()
     {
-        // if (Time.frameCount == 100) hasWon = true;
+        if (hasWon2) return;
         if (hasWon)
         {
-            if (!allSpellsUnlocked)
+            // if (!allSpellsUnlocked)
+            // {
+            //     allSpellsUnlocked = true;
+            //     UnlockAllSpells();
+            // }
+            if (!initExtra)
             {
-                allSpellsUnlocked = true;
-                UnlockAllSpells();
+                foreach (var item in extraLights)
+                {
+                    item.makeLightable();
+                }
+                initExtra = true;
             }
+            else if (extraLights.Where(c => c.IsLit()).Count() == extraLights.Length)
+            {
+                print("has won 2");
+                hasWon2 = true;
+                spellManager.UnlockSpell(SpellType.FlameJet);
+            }
+
             return;
         }
         if (lights == null || lights.Length == 0)
@@ -43,16 +67,9 @@ public class Managerlvl1candles2 : MonoBehaviour
             return;
         }
 
-        // foreach (var item in lights)
-        // {
-        //     print("light : " + item + " is lit ? " + item.IsLit());
-        // }   
-
-
         // Get all candles that are currently lit
         InteractableCandles[] litCandles = lights.Where(c => c.IsLit()).ToArray();
 
-        // print("Lit candles count: " + litCandles.Length);
         // Check if exactly 3 candles are lit
         if (litCandles.Length == 3)
         {
@@ -89,19 +106,16 @@ public class Managerlvl1candles2 : MonoBehaviour
             }
         }
 
-        print("reset puzzle called, lights length = " + lights.Length);
         for (int i = 0; i < lights.Length; i++)
         {
-            print(lights[i]);
             lights[i].BlowOutCandle();
-            // print($"reset light {i}");
         }
     }
 
     public void unlockFireSpell()
     {
         print("unlocking fireball");
-        spellManager.UnlockSpell(Spells.SpellType.Fireball);
+        spellManager.UnlockSpell(SpellType.Fireball);
     }
 
     public void UnlockAllSpells()
