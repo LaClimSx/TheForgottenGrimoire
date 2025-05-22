@@ -2068,6 +2068,7 @@ MonoBehaviour:
   rightTriggerReference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   staff: {fileID: 790385887}
   leftHand: {fileID: 2130120067}
+  rightHand: {fileID: 0}
   maxLiveCube: 4
   projectileSpawnPoint: {fileID: 790385888}
   xrRayInteractor: {fileID: 2130120064}
@@ -2081,6 +2082,13 @@ MonoBehaviour:
   cubeCompanion: {fileID: 3939869114349323532, guid: 5effe73fe3aaa654d93fe69fc2b40bc1, type: 3}
   handJets: {fileID: 2222682309489686819, guid: 2057787a0979a014ea62275c75053dc9, type: 3}
   palpatine: {fileID: 4081963641266499239, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+  windColumn: {fileID: 0}
+  fireSuccess: {fileID: 0}
+  elecSuccess: {fileID: 0}
+  earthSuccess: {fileID: 0}
+  windSuccess: {fileID: 0}
+  spaceSuccess: {fileID: 0}
+  minAnimationDuration: 0
 --- !u!114 &1110504475
 MonoBehaviour:
   m_ObjectHideFlags: 0
