@@ -195,7 +195,7 @@ public class DrawSpell : MonoBehaviour
             if (spellManager.IsSpellUnlocked(spellType))
             {
                 spellManager.CurrentSpellType = spellType;
-                spellManager.SpellState = SpellState.Casting;
+                spellManager.SpellState = SpellState.CastSuccessfull;
             }
             else
             {

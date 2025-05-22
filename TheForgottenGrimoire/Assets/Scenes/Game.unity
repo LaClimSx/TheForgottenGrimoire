@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 100956532}
   - component: {fileID: 100956531}
   - component: {fileID: 100956530}
-  - component: {fileID: 100956529}
+  - component: {fileID: 100956533}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -329,29 +329,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &100956529
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100956528}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &100956530
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -420,6 +397,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2105579969}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &100956533
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100956528}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &162772011
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,7 +2047,7 @@ GameObject:
   - component: {fileID: 1110504474}
   m_Layer: 0
   m_Name: XRSpellCaster
-  m_TagString: Untagged
+  m_TagString: spellManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2068,6 +2067,7 @@ MonoBehaviour:
   rightTriggerReference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   staff: {fileID: 790385887}
   leftHand: {fileID: 2130120067}
+  rightHand: {fileID: 2130120068}
   maxLiveCube: 4
   projectileSpawnPoint: {fileID: 790385888}
   xrRayInteractor: {fileID: 2130120064}
@@ -2081,6 +2081,13 @@ MonoBehaviour:
   cubeCompanion: {fileID: 3939869114349323532, guid: 5effe73fe3aaa654d93fe69fc2b40bc1, type: 3}
   handJets: {fileID: 2222682309489686819, guid: 2057787a0979a014ea62275c75053dc9, type: 3}
   palpatine: {fileID: 4081963641266499239, guid: 2c50be31c1ad16b43a652543bd511631, type: 3}
+  windColumn: {fileID: 6920029099259767581, guid: 1c86b331303077946a510489935b7fd9, type: 3}
+  fireSuccess: {fileID: 3304265685109034825, guid: 378aeba1c56488e4bb407561cefe2dd5, type: 3}
+  elecSuccess: {fileID: 3304265685109034825, guid: 4d3662e3beaafd343bcae275aa40c504, type: 3}
+  earthSuccess: {fileID: 6151744013740837649, guid: 2d6ff53a4b9afe542b3c62c6c56a2bd8, type: 3}
+  windSuccess: {fileID: 6676066606792805937, guid: eac34ac160f4e664fb1292a236084412, type: 3}
+  spaceSuccess: {fileID: 2672235609271201551, guid: 47bf03a1f4f19374594e7831dc2058ef, type: 3}
+  minAnimationDuration: 1
 --- !u!114 &1110504475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4136,6 +4143,11 @@ MonoBehaviour:
 --- !u!4 &2130120067 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1858397794302332148, guid: d5d9169f27282224490673868f26a58a, type: 3}
+  m_PrefabInstance: {fileID: 2130120063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2130120068 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9159162708509262616, guid: d5d9169f27282224490673868f26a58a, type: 3}
   m_PrefabInstance: {fileID: 2130120063}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2135397071 stripped
