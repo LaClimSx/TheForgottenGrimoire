@@ -50,9 +50,10 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private Transform leftHand;
     [SerializeField] private Transform rightHand;
     [SerializeField] private int maxLiveCube = 4;
-    [SerializeField] private Transform projectileSpawnPoint;    
+    [SerializeField] private Transform projectileSpawnPoint;
 
     //Teleportation
+    [SerializeField] private Transform hubTransform;
     [SerializeField] private const float smallDistanceTP = 5f;
     [SerializeField] private const float largeDistanceTP = 10f;
     [SerializeField] private XRRayInteractor xrRayInteractor;
@@ -273,16 +274,18 @@ public class SpellManager : MonoBehaviour
             case Telekinesis:
                 SetGrab(largeDistanceGrab);
                 SpellState = SpellState.Pending;
-                StartCoroutine(spaceAnimation());
+                StartCoroutine(spaceAnimation(spaceSpellDuration));
                 StartCoroutine(ResetGrab(smallDistanceGrab, spaceSpellDuration));                
                 break;
             case Blinkstep:
                 SetTP(largeDistanceTP);
                 SpellState = SpellState.Pending;
-                StartCoroutine(spaceAnimation());
+                StartCoroutine(spaceAnimation(spaceSpellDuration));
                 StartCoroutine(ResetTP(smallDistanceTP, spaceSpellDuration));
                 break;
             case Hub:
+                StartCoroutine(spaceAnimation(minAnimationDuration));
+                StartCoroutine(tpHub(minAnimationDuration));
                 SpellState = SpellState.Pending;
                 break;
             case Fireball:
@@ -401,14 +404,20 @@ public class SpellManager : MonoBehaviour
         }
     }
 
-    private IEnumerator spaceAnimation()
+    private IEnumerator spaceAnimation(float duration)
     {        
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Vector3 spawnPoint = player.transform.position;
         spawnPoint.y = 0f;
         print($"Regarde jose le point de spawn il est la {spawnPoint} sur la transform {player.name}");
         currentAnimation = Instantiate(spaceSuccess, spawnPoint, Quaternion.identity, player.transform);
-        yield return new WaitForSeconds(spaceSpellDuration);
+        yield return new WaitForSeconds(duration);
         Destroy(currentAnimation);
+    }
+
+    private IEnumerator tpHub(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        GameObject.FindWithTag("Player").transform.position = hubTransform.position;
     }
 }
