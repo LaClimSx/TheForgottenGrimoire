@@ -3374,7 +3374,7 @@ MonoBehaviour:
   rightHand: {fileID: 2130120068}
   maxLiveCube: 4
   projectileSpawnPoint: {fileID: 790385888}
-  hubTransform: {fileID: 582545582}
+  hubTransform: {fileID: 0}
   xrRayInteractor: {fileID: 2130120064}
   curveInteractionCasterLeft: {fileID: 2130120066}
   curveInteractionCasterRight: {fileID: 2130120065}
@@ -6396,6 +6396,10 @@ PrefabInstance:
       propertyPath: pinchAction.m_Action.m_SingletonActionBindings.Array.data[3].m_Flags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4092708185235711161, guid: b54839105fd9a2d34ba4db9b7a6899c2, type: 3}
+      propertyPath: m_Name
+      value: grab_book
+      objectReference: {fileID: 0}
     - target: {fileID: 6371591575934794305, guid: b54839105fd9a2d34ba4db9b7a6899c2, type: 3}
       propertyPath: m_Name
       value: Grimoire
@@ -7110,7 +7114,6 @@ Transform:
   - {fileID: 309937541}
   - {fileID: 824230555}
   - {fileID: 243402307}
-  - {fileID: 582545582}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2115453759
