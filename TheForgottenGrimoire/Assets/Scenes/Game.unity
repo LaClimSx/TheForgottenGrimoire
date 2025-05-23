@@ -6428,6 +6428,10 @@ PrefabInstance:
       propertyPath: pinchAction.m_Action.m_SingletonActionBindings.Array.data[3].m_Flags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4092708185235711161, guid: b54839105fd9a2d34ba4db9b7a6899c2, type: 3}
+      propertyPath: m_Name
+      value: grab_book
+      objectReference: {fileID: 0}
     - target: {fileID: 6371591575934794305, guid: b54839105fd9a2d34ba4db9b7a6899c2, type: 3}
       propertyPath: m_Name
       value: Grimoire
