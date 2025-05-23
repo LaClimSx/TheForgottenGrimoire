@@ -1,54 +1,84 @@
-using System;
 using UnityEngine;
 
 public class Grimoire : MonoBehaviour
 {
-    [SerializeField] private Transform _target; // Set to target to follow
-    [SerializeField] private float followSpeed = 5f;    // Smoothing
+    [Header("Follow Target")]
+    [SerializeField] private Transform _target;         // What it follows
+    [SerializeField] private float followSpeed = 5f;    // Position smoothing
+    [SerializeField] private Vector3 positionOffset;    // Offset from target
+
+    [Header("Camera Billboard")]
+    [SerializeField] private Transform cameraTransform; // Your XR camera (or leave null for Camera.main)
     
-    [SerializeField] private Vector3 positionOffset;
-    [SerializeField] private Vector3 angle;
+
+    [Header("Base Rotation Offset")]
+    [Tooltip("Local Euler angles to apply on top of the camera-facing rotation.")]
+    [SerializeField] private Vector3 baseRotationOffset = Vector3.zero;
+
+    private void Reset()
+    {
+        if (cameraTransform == null && Camera.main != null)
+            cameraTransform = Camera.main.transform;
+    }
 
     private void Start()
     {
-        float angleY = _target.eulerAngles.y;
-        // Smooth follow
-        transform.position = GetTargetPosition(angleY);
+        if (cameraTransform == null && Camera.main != null)
+            cameraTransform = Camera.main.transform;
 
-        // Make the book face the same way as the player
-        transform.rotation = Quaternion.Euler(angle.x, angle.y + angleY, angle.z);
+        // Snap into place with offset
+        transform.position = GetTargetPosition();
+        LookAtCamera(instant: true);
     }
 
-    void Update()
+    private void Update()
     {
-        //if (!target) return;
-        // Get the yaw angle (rotation around Y) of the player
-        float angleY = _target.eulerAngles.y;
+        // 1) Smooth follow
+        Vector3 desiredPos = GetTargetPosition();
+        transform.position = Vector3.Lerp(transform.position, desiredPos, Time.deltaTime * followSpeed);
 
-        // Build desired position
-        Vector3 desiredPosition = GetTargetPosition(angleY);
-
-        // Smooth follow
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * followSpeed);
-
-        // Make the book face the same way as the player
-        Quaternion targetRotation = Quaternion.Euler(angle.x, angle.y + angleY, angle.z);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * followSpeed);
+        // 2) Billboard + base offset
+        LookAtCamera();
     }
 
-    private Vector3 GetTargetPosition(float angleY)
+    private Vector3 GetTargetPosition()
     {
-        float angleRad = angleY * Mathf.Deg2Rad;
+        return _target.position + positionOffset;
+    }
 
-        // Calculate position based on direction the player is looking
-        float offsetX = Mathf.Sin(angleRad) * positionOffset.x + Mathf.Cos(angleRad) * positionOffset.z;
-        float offsetZ = Mathf.Cos(angleRad) * positionOffset.x - Mathf.Sin(angleRad) * positionOffset.z;
+    /// <summary>
+    /// Rotates the grimoire to face the camera, then applies the baseRotationOffset.
+    /// </summary>
+    /// <param name="instant">If true, snaps immediately instead of lerping</param>
+    private void LookAtCamera(bool instant = false)
+    {
+        if (cameraTransform == null)
+            return;
 
-        // Build desired position
-       return new Vector3(
-            _target.position.x + offsetX,
-            _target.position.y + positionOffset.y,
-            _target.position.z + offsetZ
-        );
+        // Direction from book to camera
+        Vector3 dir = cameraTransform.position - transform.position;
+
+        if (dir.sqrMagnitude < 0.0001f)
+            return;
+
+        // Base look rotation
+        Quaternion lookRot = Quaternion.LookRotation(dir);
+
+        // Apply your base offset (in local Euler angles)
+        Quaternion offsetRot = Quaternion.Euler(baseRotationOffset);
+        Quaternion finalRot = lookRot * offsetRot;
+
+        if (instant)
+            transform.rotation = finalRot;
+        else
+            transform.rotation = Quaternion.Lerp(transform.rotation, finalRot, Time.deltaTime * followSpeed);
+    }
+
+    // Called externally when grab is released to recalculate offset
+    public void SetNewTargetPositionActual()
+    {
+        Vector3 localOffset = transform.position - _target.position;
+        positionOffset = localOffset;
+        Debug.Log($"Recomputed local offset: {positionOffset}");
     }
 }

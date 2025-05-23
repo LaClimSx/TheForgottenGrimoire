@@ -14,7 +14,9 @@ public class CubeCompanion : MonoBehaviour
     {
         if (Time.time > death)
         {
-            GameObject.FindWithTag("spellManager").GetComponent<SpellManager>().RemoveCompanionCube(gameObject);
+            SpellManager manager = GameObject.FindWithTag("spellManager").GetComponent<SpellManager>();
+            if (manager == null) Debug.LogError($"Spell manager null in cube companion {name}");
+            manager.RemoveCompanionCube(gameObject);
             Destroy(gameObject);
         }
     }
