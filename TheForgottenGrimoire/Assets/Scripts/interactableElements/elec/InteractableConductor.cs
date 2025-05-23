@@ -30,6 +30,7 @@ public class InteractableConductor : InteractableElement
     {
         if (Power > 0 && Time.time >= nextUpdate)
         {
+            print("electrified");
             blink();
             nextUpdate = Time.time + _blinkInterval;
         }
@@ -42,7 +43,7 @@ public class InteractableConductor : InteractableElement
 
     private void OnCollisionEnter(Collision collision)
     {
-        InteractorElec interactor = collision.gameObject.GetComponent<InteractorElec>();
+        InteractorElec interactor = collision.gameObject.CompareTag("palpatine") ? collision.gameObject.GetComponent<Palpatine>().interactor() : collision.gameObject.GetComponent<InteractorElec>();
         InteractableConductor conductor = collision.gameObject.GetComponent<InteractableConductor>();
         
         if (interactor != null)

@@ -61,7 +61,7 @@ public class InteractableChargeable : InteractableElement
 
     private void OnCollisionEnter(Collision collision)
     {
-        InteractorElec interactor = collision.gameObject.GetComponent<InteractorElec>();
+        InteractorElec interactor = collision.gameObject.CompareTag("palpatine") ? collision.gameObject.GetComponent<Palpatine>().interactor() : collision.gameObject.GetComponent<InteractorElec>();
         if (interactor != null)
         {
             if (!charging) charging = true;

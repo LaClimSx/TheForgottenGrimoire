@@ -54,6 +54,7 @@ public class SpellManager : MonoBehaviour
 
     //Teleportation
     [SerializeField] private Transform hubTransform;
+    [SerializeField] private Material defaultSkybox;
     [SerializeField] private const float smallDistanceTP = 5f;
     [SerializeField] private const float largeDistanceTP = 10f;
     [SerializeField] private XRRayInteractor xrRayInteractor;
@@ -419,5 +420,6 @@ public class SpellManager : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         GameObject.FindWithTag("Player").transform.position = hubTransform.position;
+        RenderSettings.skybox = defaultSkybox;
     }
 }

@@ -8,6 +8,7 @@ public class Palpatine : MonoBehaviour
     [SerializeField] private float lightningSpawnInterval;
     [SerializeField] private int lightningResolution;
     [SerializeField] private GameObject lightning;
+    [SerializeField] private GameObject hitbox;
     private float nextSpawn;
     private (float x, float y) hitBoxEndPlanSize = (1f, 0.15f);
 
@@ -48,6 +49,16 @@ public class Palpatine : MonoBehaviour
             generateLightning();
             nextSpawn += lightningSpawnInterval;
         }
+    }
+
+    public InteractorElec interactor()
+    {
+        for (int i = 0; i < hitbox.transform.childCount; ++i)
+        {
+            var child = hitbox.transform.GetChild(i);
+            if (child.GetComponent<InteractorElec>() != null) return child.GetComponent<InteractorElec>();
+        }
+        return null;
     }
 
     private void generateLightning()
