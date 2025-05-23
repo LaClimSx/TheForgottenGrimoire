@@ -15,6 +15,13 @@ TagManager:
   - Fire_interactor
   - handles
   - conductorManager
+  - spellManager
+  - magicStaff
+  - Fireball
+  - FlameThrower
+  - Elecball
+  - Earthball
+  - grimoire
   layers:
   - Default
   - TransparentFX
