@@ -6,7 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="2f91bc6f-9b43-45cf-986d-8e4920fb37ec" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheForgottenGrimoire/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheForgottenGrimoire/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/pages.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/pages.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Images/pages_book/13.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/pages_book/13.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Images/pages_book/14.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/pages_book/14.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Images/pages_book/15.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/pages_book/15.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Images/pages_book/16.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/pages_book/16.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grimoire.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grimoire.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/customPrefabs/Materials/LeftPageMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/customPrefabs/Materials/LeftPageMat.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +48,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;new__grimoire&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -119,6 +125,8 @@
       <workItem from="1746793115849" duration="4109000" />
       <workItem from="1747644854747" duration="1411000" />
       <workItem from="1747652298321" duration="2796000" />
+      <workItem from="1747984828716" duration="2977000" />
+      <workItem from="1748003356675" duration="3560000" />
     </task>
     <servers />
   </component>
