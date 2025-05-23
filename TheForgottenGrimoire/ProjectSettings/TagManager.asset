@@ -21,6 +21,7 @@ TagManager:
   - FlameThrower
   - Elecball
   - Earthball
+  - grimoire
   layers:
   - Default
   - TransparentFX

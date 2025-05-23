@@ -66,6 +66,13 @@ public class ProjectileSpell : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        if (collision.collider.CompareTag("grimoire"))
+        {
+            Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

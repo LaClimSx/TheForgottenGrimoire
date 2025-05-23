@@ -39,7 +39,8 @@ public class HandJetsProjectile : MonoBehaviour
         if (!collision.collider.CompareTag("leftHand") && 
             !collision.collider.CompareTag("rightHand") && 
             !collision.collider.CompareTag("magicStaff") && 
-            !collision.collider.CompareTag("Player"))
+            !collision.collider.CompareTag("Player") &&
+            !collision.collider.CompareTag("grimoire"))
         {
             if (IsLeft) MainSpell.LeftCollision = collision.GetContact(0).point;
             else MainSpell.RightCollision = collision.GetContact(0).point;

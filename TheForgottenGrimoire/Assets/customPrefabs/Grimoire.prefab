@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 5057888706626760143}
   m_Layer: 0
   m_Name: Grimoire
-  m_TagString: Untagged
+  m_TagString: grimoire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

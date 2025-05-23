@@ -13,6 +13,8 @@ namespace Spells
     {
         Pending,
         Drawing,
+        CastSuccessfull,
+        Animation,
         Casting
     }
     public enum SpellType
@@ -46,10 +48,12 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private InputActionReference rightTriggerReference;
     [SerializeField] private GameObject staff;
     [SerializeField] private Transform leftHand;
+    [SerializeField] private Transform rightHand;
     [SerializeField] private int maxLiveCube = 4;
-    [SerializeField] private Transform projectileSpawnPoint;    
+    [SerializeField] private Transform projectileSpawnPoint;
 
     //Teleportation
+    [SerializeField] private Transform hubTransform;
     [SerializeField] private const float smallDistanceTP = 5f;
     [SerializeField] private const float largeDistanceTP = 10f;
     [SerializeField] private XRRayInteractor xrRayInteractor;
@@ -69,6 +73,17 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private GameObject cubeCompanion;
     [SerializeField] private GameObject handJets;
     [SerializeField] private GameObject palpatine;
+    [SerializeField] private GameObject windColumn;
+
+    //Cast successfull animation
+    [SerializeField] private GameObject fireSuccess;
+    [SerializeField] private GameObject elecSuccess;
+    [SerializeField] private GameObject earthSuccess;
+    [SerializeField] private GameObject windSuccess;
+    [SerializeField] private GameObject spaceSuccess;
+    [SerializeField] private float minAnimationDuration;
+    private GameObject currentAnimation;
+    private float actualCastTime;
 
     private SpellState _spellState = SpellState.Pending;
     private GameObject toCast;
@@ -84,6 +99,7 @@ public class SpellManager : MonoBehaviour
         get => _spellState;
         set
         {
+            //if (_spellState == SpellState.Animation) print($"Switching from animation to {value}");
             _spellState = value;
             if (_spellState == SpellState.Casting && _currentSpellType != SpellType.NoSpell)
             {
@@ -103,7 +119,7 @@ public class SpellManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        InitDict(true);
+        InitDict(true); // true to unlock every spells at the beginning -- debug purposes
     }
 
     private Vector3 getProjectilSpawnPointInWorldCoord()
@@ -114,12 +130,63 @@ public class SpellManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_spellState == SpellState.Casting)
+        if (actualCastTime < Time.time && SpellState == SpellState.Animation)
+        {
+            SpellState = SpellState.Casting;
+        }
+        else if (SpellState == SpellState.CastSuccessfull)
+        {
+            actualCastTime = Time.time + minAnimationDuration;
+            SpellState = SpellState.Animation;            
+            switch (_currentSpellType)
+            {                
+                case SpellType.ArcHands:
+                    currentAnimation = Instantiate(elecSuccess, leftHand);
+                    break;
+                case SpellType.Blinkstep:
+                //    currentAnimation = Instantiate(spaceSuccess, rightHand);
+                    break;
+                case SpellType.ChargeShot:
+                    currentAnimation = Instantiate(elecSuccess, getProjectilSpawnPointInWorldCoord(), Quaternion.identity, projectileSpawnPoint);
+                    break;
+                case SpellType.Cube:
+                    currentAnimation = Instantiate(earthSuccess, getProjectilSpawnPointInWorldCoord(), Quaternion.identity, projectileSpawnPoint);
+                    break;
+                case SpellType.Earthball:
+                    currentAnimation = Instantiate(earthSuccess, getProjectilSpawnPointInWorldCoord(), Quaternion.identity, projectileSpawnPoint);
+                    break;
+                case SpellType.Emberlight:
+                    currentAnimation = Instantiate(fireSuccess, getProjectilSpawnPointInWorldCoord(), Quaternion.identity, projectileSpawnPoint);
+                    break;
+                case SpellType.Fireball:
+                    currentAnimation = Instantiate(fireSuccess, getProjectilSpawnPointInWorldCoord(), Quaternion.identity, projectileSpawnPoint);
+                    break;
+                case SpellType.FlameJet:
+                    currentAnimation = Instantiate(fireSuccess, leftHand);
+                    break;
+                case SpellType.HandJet:
+                    currentAnimation = Instantiate(windSuccess, leftHand);
+                    break;
+                case SpellType.Hub:
+                //    currentAnimation = Instantiate(spaceSuccess, GameObject.FindGameObjectWithTag("Player").transform);
+                    break;
+                case SpellType.Telekinesis:
+                    //currentAnimation = Instantiate(spaceSuccess, rightHand);
+                    break;
+                case SpellType.WindColumn:
+                    currentAnimation = Instantiate(windSuccess, getProjectilSpawnPointInWorldCoord(), Quaternion.identity, projectileSpawnPoint);
+                    break;
+                case SpellType.NoSpell:                    
+                    break;
+            }
+        }
+        else if (SpellState == SpellState.Casting)
         {
             if (toCast.GetComponent<ProjectileSpell>() != null && castedSpell == null && !spellInUse)
             {
                 print("Instantiating " + toCast.name);
-                castedSpell = Instantiate(toCast, getProjectilSpawnPointInWorldCoord(), projectileSpawnPoint.localRotation, projectileSpawnPoint);
+                Destroy(currentAnimation);
+                castedSpell = Instantiate(toCast, getProjectilSpawnPointInWorldCoord(), projectileSpawnPoint.rotation, projectileSpawnPoint);
             }
             else if (rightTriggerReference.action.triggered && toCast.GetComponent<ProjectileSpell>() != null && castedSpell != null && !spellInUse)
             {
@@ -128,7 +195,7 @@ public class SpellManager : MonoBehaviour
                 GameObject projectile = Instantiate(toCast, getProjectilSpawnPointInWorldCoord(), Quaternion.identity);
                 projectile.GetComponent<ProjectileSpell>().launch(projectileSpawnPoint.forward);
                 castedSpell = null;
-                _spellState = SpellState.Pending;
+                SpellState = SpellState.Pending;
             }
             else if (rightTriggerReference.action.triggered && toCast == cubeCompanion)
             {
@@ -138,14 +205,16 @@ public class SpellManager : MonoBehaviour
                     liveCubes.RemoveAt(0);
                     Destroy(tokill);
                 }
+                Destroy(currentAnimation);
                 liveCubes.Add(Instantiate(toCast, getProjectilSpawnPointInWorldCoord(), Quaternion.identity));
-                _spellState = SpellState.Pending;
+                SpellState = SpellState.Pending;
             }
             else if (toCast == handJets)
             {               
                 if (!spellInUse)
                 {
                     print("spawn handjets");
+                    Destroy(currentAnimation);
                     castedSpell = Instantiate(toCast, getProjectilSpawnPointInWorldCoord(), Quaternion.identity);
                     spellInUse = true;
                 } 
@@ -159,11 +228,12 @@ public class SpellManager : MonoBehaviour
                     Destroy(castedSpell);
                     castedSpell = null;
                     spellInUse = false;
-                    _spellState= SpellState.Pending;
+                    SpellState = SpellState.Pending;
                 }
             }
             else if (rightTriggerReference.action.ReadValue<float>() > 0.5 && !spellInUse)
             {
+                Destroy(currentAnimation);
                 spellInUse = true;
                 if (toCast == flameThrower)
                 {
@@ -173,41 +243,50 @@ public class SpellManager : MonoBehaviour
                 {
                     castedSpell = Instantiate(toCast, leftHand.position, leftHand.rotation, leftHand);
                 }
+                else if (toCast == windColumn)
+                {
+                    castedSpell= Instantiate(toCast, getProjectilSpawnPointInWorldCoord(), projectileSpawnPoint.rotation, projectileSpawnPoint);
+                }
             }
             else if (spellInUse && rightTriggerReference.action.ReadValue<float>() <= 0.5)
             {
                 spellInUse = false;
                 Destroy(castedSpell);
                 castedSpell = null;
-                _spellState = SpellState.Pending;
+                SpellState = SpellState.Pending;
             }
-        } 
-        else
-        {
-            Destroy(castedSpell);
-            castedSpell = null;
-            _spellState = SpellState.Pending;
-        }        
+        }
+        
+        //if ()
+        //{
+        //    Destroy(castedSpell);
+        //    castedSpell = null;
+        //    SpellState = SpellState.Pending;
+        //}        
     }
 
     void  CastSpell(SpellType spellType)
     {
         //TODO: stuff
-        print("casting :" + spellType);
+        print("casting :" + spellType);                
         switch (spellType)
         {
             case Telekinesis:
                 SetGrab(largeDistanceGrab);
-                StartCoroutine(ResetGrab(smallDistanceGrab, spaceSpellDuration));
-                _spellState = SpellState.Pending;
+                SpellState = SpellState.Pending;
+                StartCoroutine(spaceAnimation(spaceSpellDuration));
+                StartCoroutine(ResetGrab(smallDistanceGrab, spaceSpellDuration));                
                 break;
             case Blinkstep:
                 SetTP(largeDistanceTP);
+                SpellState = SpellState.Pending;
+                StartCoroutine(spaceAnimation(spaceSpellDuration));
                 StartCoroutine(ResetTP(smallDistanceTP, spaceSpellDuration));
-                _spellState = SpellState.Pending;
                 break;
             case Hub:
-                _spellState = SpellState.Pending;
+                StartCoroutine(spaceAnimation(minAnimationDuration));
+                StartCoroutine(tpHub(minAnimationDuration));
+                SpellState = SpellState.Pending;
                 break;
             case Fireball:
                 toCast = fireball;
@@ -216,7 +295,7 @@ public class SpellManager : MonoBehaviour
                 toCast = flameThrower;
                 break;
             case Emberlight:
-                _spellState = SpellState.Pending;
+                SpellState = SpellState.Pending;
                 break;
             case ChargeShot:
                 toCast = elecball;
@@ -234,10 +313,10 @@ public class SpellManager : MonoBehaviour
                 toCast = handJets;
                 break;
             case WindColumn:
-                _spellState = SpellState.Pending;
+                toCast = windColumn;
                 break;
             default:
-                _spellState = SpellState.Pending;
+                SpellState = SpellState.Pending;
                 break;
         }
     }
@@ -323,5 +402,22 @@ public class SpellManager : MonoBehaviour
             Debug.LogError("Spell type not found in dictionary: " + spellType);
             return false;
         }
+    }
+
+    private IEnumerator spaceAnimation(float duration)
+    {        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Vector3 spawnPoint = player.transform.position;
+        spawnPoint.y = 0f;
+        print($"Regarde jose le point de spawn il est la {spawnPoint} sur la transform {player.name}");
+        currentAnimation = Instantiate(spaceSuccess, spawnPoint, Quaternion.identity, player.transform);
+        yield return new WaitForSeconds(duration);
+        Destroy(currentAnimation);
+    }
+
+    private IEnumerator tpHub(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        GameObject.FindWithTag("Player").transform.position = hubTransform.position;
     }
 }
