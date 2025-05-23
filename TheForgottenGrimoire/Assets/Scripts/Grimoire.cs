@@ -9,7 +9,7 @@ public class Grimoire : MonoBehaviour
 
     [Header("Camera Billboard")]
     [SerializeField] private Transform cameraTransform; // Your XR camera (or leave null for Camera.main)
-    [SerializeField] private bool onlyYRotation = true; // If true, locks out pitch/roll
+    
 
     [Header("Base Rotation Offset")]
     [Tooltip("Local Euler angles to apply on top of the camera-facing rotation.")]
@@ -57,8 +57,6 @@ public class Grimoire : MonoBehaviour
 
         // Direction from book to camera
         Vector3 dir = cameraTransform.position - transform.position;
-        if (onlyYRotation)
-            dir.y = 0;
 
         if (dir.sqrMagnitude < 0.0001f)
             return;
