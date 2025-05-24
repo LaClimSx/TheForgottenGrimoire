@@ -13,7 +13,7 @@ public class ConductorManager : MonoBehaviour
         circuits = new List<Circuit>();
         sources = new Dictionary<Circuit, HashSet<InteractorElec>>();
         computeAllCircuits();
-        printCircuitsAndSrc();
+        //printCircuitsAndSrc();
     }
 
     public void srcCollidedWithConductor(InteractorElec src, InteractableConductor conductor)
@@ -36,14 +36,14 @@ public class ConductorManager : MonoBehaviour
         {
             mergeAndRecomputeCircuit(conductor1, conductor2);
         }
-        printCircuitsAndSrc();
+        //printCircuitsAndSrc();
     }
 
     public void conductorLeavingConductor(InteractableConductor conductor1, InteractableConductor conductor2)
     {        
         if (getCircuitOfConductor(conductor1).Equals(getCircuitOfConductor(conductor2))) 
         {
-            print($"{conductor1.name} and {conductor2.name} had same circuit, need to recompute circuits to split it");
+            //print($"{conductor1.name} and {conductor2.name} had same circuit, need to recompute circuits to split it");
             Circuit c = getCircuitOfConductor(conductor1);
             List<InteractableConductor> toSplit = new List<InteractableConductor>();
             foreach (InteractableConductor conductor in c)
@@ -119,7 +119,7 @@ public class ConductorManager : MonoBehaviour
 
     private Circuit mergeCircuits(Circuit c1, Circuit c2)
     {
-        print($"merging {c1} and {c2}");        
+        //print($"merging {c1} and {c2}");        
 
         Circuit c12 = new Circuit();
         c12.UnionWith(c1);
@@ -154,20 +154,20 @@ public class ConductorManager : MonoBehaviour
         HashSet<Circuit> modifiedCircuit = new HashSet<Circuit>();
         foreach (InteractableConductor conductor in conductors)
         {
-            print("computing circuit for " + conductor.name);
+            //print("computing circuit for " + conductor.name);
             Circuit circuit = getCircuitOfConductor(conductor) ?? createCircuit();
-            print("found circuit size: " + circuit.Count);
+            //print("found circuit size: " + circuit.Count);
             circuit.Add(conductor);
 
             var neighbors = conductor.getNeighbors();
-            print("neighbors sources found: " + neighbors.Item2.Count);
+           //print("neighbors sources found: " + neighbors.Item2.Count);
 
-            print("sources already existing: " + sources[circuit].Count);
+            //print("sources already existing: " + sources[circuit].Count);
             sources[circuit].UnionWith(neighbors.Item2);
-            print("sources found size: " + sources[circuit].Count);
+            //print("sources found size: " + sources[circuit].Count);
 
             List<InteractableConductor> neighborsCond = neighbors.Item1;
-            print("neighbors conductor found: " + neighborsCond.Count);
+            //print("neighbors conductor found: " + neighborsCond.Count);
             foreach (InteractableConductor n in neighborsCond)
             {
                 Circuit nCircuit = getCircuitOfConductor(n);
@@ -181,7 +181,7 @@ public class ConductorManager : MonoBehaviour
                 }
             }
             modifiedCircuit.Add(circuit);
-            print("modified circuit: " + modifiedCircuit);
+            //print("modified circuit: " + modifiedCircuit);
         }
         modifiedCircuit.IntersectWith(circuits);
         recomputePowerCircuits(modifiedCircuit);

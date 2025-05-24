@@ -22,6 +22,7 @@ TagManager:
   - Elecball
   - Earthball
   - grimoire
+  - palpatine
   layers:
   - Default
   - TransparentFX
