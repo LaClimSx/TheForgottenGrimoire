@@ -29,7 +29,7 @@ public class level2Manager : MonoBehaviour
     private List<InteractableCandles> winningSequence;
     private List<InteractableCandles> currentSequence;
 
-    private bool hasWon1 = true; // to debug
+    private bool hasWon1 = false;
     private bool hasWon2 = false;
     private bool done = false;
 
