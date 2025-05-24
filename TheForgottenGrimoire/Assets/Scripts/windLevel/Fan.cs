@@ -6,6 +6,8 @@ public class Fan : MonoBehaviour
     [SerializeField] private GameObject rotors;
     [SerializeField] private float rotorSpeed;
 
+    [SerializeField] private bool forceActivationDebug = false;
+
     private bool _isOn;
     public bool IsOn 
     { 
@@ -21,7 +23,7 @@ public class Fan : MonoBehaviour
     void Update()
     {
         IsOn = GetComponent<InteractableConductor>().Power > 0;
-        if (IsOn)
+        if (IsOn ||forceActivationDebug)
         {
             rotateRotors();
         }
@@ -29,7 +31,7 @@ public class Fan : MonoBehaviour
 
     private void rotateRotors()
     {
-        rotors.transform.Rotate(transform.up, rotorSpeed);        
+        rotors.transform.Rotate(transform.forward, rotorSpeed);        
         GetComponent<ParticleSystem>().Play();
     }
 

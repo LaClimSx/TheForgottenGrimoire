@@ -29,7 +29,7 @@ public class Batterie : MonoBehaviour
         {
             trapActivated = true;
             trap.SetActive(false);
-            sendElec.enabled = true;
+            if (sendElec != null) sendElec.enabled = true;
         }
     }
 }

@@ -30,7 +30,7 @@ public class InteractableConductor : InteractableElement
     {
         if (Power > 0 && Time.time >= nextUpdate)
         {
-            print("electrified");
+            //print("electrified");
             if (_blinkInterval != 0) blink();
             nextUpdate = Time.time + _blinkInterval;
         }
@@ -45,7 +45,7 @@ public class InteractableConductor : InteractableElement
     {
         InteractorElec interactor = collision.gameObject.CompareTag("palpatine") ? collision.gameObject.GetComponent<Palpatine>().interactor() : collision.gameObject.GetComponent<InteractorElec>();
         InteractableConductor conductor = collision.gameObject.GetComponent<InteractableConductor>();
-        print(collision.collider.name + " (is collider " + conductor == null + ") collided with " + name);
+        //print(collision.collider.name + " (is collider " + conductor == null + ") collided with " + name);
         if (interactor != null)
         {
             _conductorManager.srcCollidedWithConductor(interactor, this);
@@ -53,7 +53,7 @@ public class InteractableConductor : InteractableElement
 
         if (conductor != null)
         {
-            print("conductor conductor collision detected");
+            //print("conductor conductor collision detected");
             _conductorManager.ConductorCollidingWithConductor(conductor, this);
         }
     }
@@ -65,13 +65,13 @@ public class InteractableConductor : InteractableElement
 
         if (interactor != null)
         {
-            print($"[DEBUG] source {interactor.name} exiting collision with {name}");
+            //print($"[DEBUG] source {interactor.name} exiting collision with {name}");
             _conductorManager.srcLeavingConductor(interactor, this);
         }
 
         if (conductor != null)
         {
-            print($"[DEBUG] conductor {conductor.name} exiting collision with {name}");
+           // print($"[DEBUG] conductor {conductor.name} exiting collision with {name}");
             _conductorManager.conductorLeavingConductor(conductor, this);   
         }
     }

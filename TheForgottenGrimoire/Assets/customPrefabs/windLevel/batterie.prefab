@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7660007065566902929}
   - component: {fileID: 6565227280438779452}
   - component: {fileID: 8392058322433680633}
+  - component: {fileID: 779403556996118082}
+  - component: {fileID: 2759385998397321456}
   m_Layer: 0
   m_Name: energy
   m_TagString: Untagged
@@ -28,9 +30,9 @@ Transform:
   m_GameObject: {fileID: 1056487969537195888}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0.25}
-  m_LocalScale: {x: 0.20140986, y: 0.20140986, z: 0.49999997}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0.08, z: 0.25}
+  m_LocalScale: {x: 0.20140986, y: 0.23, z: 0.49999997}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2039710863120241882}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -106,8 +108,35 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.4770877, y: 1.591685, z: 1.6391761}
+  m_Center: {x: 0.004225071, y: 0.2958425, z: -0.00498868}
+--- !u!114 &779403556996118082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056487969537195888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2a6d4a3b693f4448d683496f3f2763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxCharge: 10
+  _blinkInterval: 0.15
+--- !u!114 &2759385998397321456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056487969537195888}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683d81c283e5e2f4f951aef1f3acbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 1
 --- !u!1 &5238858565436321252
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3639541067252667605}
+  - component: {fileID: 2664641865066108796}
   m_Layer: 0
   m_Name: batterie
   m_TagString: Untagged
@@ -274,14 +304,29 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.52, y: 0.52, z: 0.52}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 452567957275705598}
   - {fileID: 54282666850669454}
   - {fileID: 2039710863120241882}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2664641865066108796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8236573199827997090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e4ce68c56811694a9a8140a2f6ade2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trap: {fileID: 0}
+  energyLevel: {fileID: 1056487969537195888}
+  chargeDisplay: {fileID: 2039710863120241882}
 --- !u!1001 &129866984993711893
 PrefabInstance:
   m_ObjectHideFlags: 0
