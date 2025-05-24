@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Spells;
 using UnityEngine;
 
 public class level2Manager : MonoBehaviour
@@ -7,8 +8,12 @@ public class level2Manager : MonoBehaviour
     [SerializeField] private SlidingDoor slidingDoor1;
     [SerializeField] private SlidingDoor slidingDoor2;
     [SerializeField] private GameObject fan;
+    private int waitForZap = 200;
+    [SerializeField] private AudioSource elecAudio;
     private Animation fanAnim;
     private AudioSource fanAudio;
+
+    [SerializeField] private Lightable lightable;
 
     [SerializeField] private Light light1;
     [SerializeField] private Light light2;
@@ -24,8 +29,11 @@ public class level2Manager : MonoBehaviour
     private List<InteractableCandles> winningSequence;
     private List<InteractableCandles> currentSequence;
 
-    private bool hasWon1 = false;
+    private bool hasWon1 = true; // to debug
     private bool hasWon2 = false;
+    private bool done = false;
+
+    [SerializeField] private SpellManager spellManager;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -42,10 +50,25 @@ public class level2Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hasWon2) return;
+        if (done) return;
+        if (waitForZap == 0)
+        {
+            elecAudio.enabled = true;
+            done = true;
+            return;
+        }
+        if (hasWon2)
+        {
+            waitForZap = waitForZap - 1;
+            return;
+        }
         if (hasWon1)
         {
             // check puzzle 2 
+            if (lightable.done)
+            {
+                turnOnCurrent();
+            }
         }
         else
         {
@@ -93,8 +116,11 @@ public class level2Manager : MonoBehaviour
     // win puzzle2
     public void turnOnCurrent()
     {
+        hasWon2 = true;
         fanAnim.enabled = true;
         fanAudio.enabled = true;
+        spellManager.UnlockSpell(SpellType.ChargeShot);
+        spellManager.UnlockSpell(SpellType.ArcHands);
     }
 
     private void ResetPuzzle1()
