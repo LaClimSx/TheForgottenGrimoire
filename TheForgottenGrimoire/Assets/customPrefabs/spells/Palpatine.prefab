@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 8405830849263235405}
   m_Layer: 0
   m_Name: Palpatine
-  m_TagString: Untagged
+  m_TagString: palpatine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,6 +208,7 @@ MonoBehaviour:
   lightningSpawnInterval: 0.05
   lightningResolution: 8
   lightning: {fileID: 5929932674151604122, guid: 58495c28c27d6b54cb6a4f6ee8a2dd66, type: 3}
+  hitbox: {fileID: 1207479349656025417}
   maxDisplacement: 0.15
 --- !u!54 &4589596181683298403
 Rigidbody:

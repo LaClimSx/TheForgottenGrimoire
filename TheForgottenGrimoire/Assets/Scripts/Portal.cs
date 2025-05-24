@@ -3,12 +3,14 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
     [SerializeField] private Transform dest;
+    [SerializeField] private Material destSkybox;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             other.transform.position = dest.position;
+            if (destSkybox != null) { RenderSettings.skybox = destSkybox; }
         }
         else if (other.CompareTag("magicStaff")) 
         {
