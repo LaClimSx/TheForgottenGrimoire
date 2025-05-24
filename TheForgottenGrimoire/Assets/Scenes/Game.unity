@@ -6260,6 +6260,10 @@ PrefabInstance:
       propertyPath: positionOffset.y
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 1893565637025957855, guid: b54839105fd9a2d34ba4db9b7a6899c2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2151051784579479282, guid: b54839105fd9a2d34ba4db9b7a6899c2, type: 3}
       propertyPath: pageImages.Array.size
       value: 16
@@ -6400,6 +6404,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: grab_book
       objectReference: {fileID: 0}
+    - target: {fileID: 5298392244203567607, guid: b54839105fd9a2d34ba4db9b7a6899c2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298392244203567607, guid: b54839105fd9a2d34ba4db9b7a6899c2, type: 3}
+      propertyPath: m_FloatPropertyName
+      value: _BaseColor
+      objectReference: {fileID: 0}
     - target: {fileID: 6371591575934794305, guid: b54839105fd9a2d34ba4db9b7a6899c2, type: 3}
       propertyPath: m_Name
       value: Grimoire
@@ -6453,7 +6465,9 @@ PrefabInstance:
       value: 90.123
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 6128889323723676949, guid: b54839105fd9a2d34ba4db9b7a6899c2, type: 3}
+    - {fileID: 0}
+    - {fileID: 5298392244203567607, guid: b54839105fd9a2d34ba4db9b7a6899c2, type: 3}
+    - {fileID: 1893565637025957855, guid: b54839105fd9a2d34ba4db9b7a6899c2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
