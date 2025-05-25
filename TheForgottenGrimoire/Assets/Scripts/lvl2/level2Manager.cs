@@ -75,7 +75,6 @@ public class level2Manager : MonoBehaviour
             // check puzzle 1
             if (Time.frameCount % 500 == 0)
             {
-                currentSequence.ForEach(print);
                 updateLightSequence();
             }
             if (currentSequence.Count == winningSequence.Count)
@@ -140,7 +139,6 @@ public class level2Manager : MonoBehaviour
             lightSequence[currentLight].color = Color.white;
             lightSequence[currentLight].intensity = 0.2f;
         }
-        print("update light sequence, current = " + currentLight);
         
         currentLight = (currentLight + 1) % (lightSequence.Count + 1);
 

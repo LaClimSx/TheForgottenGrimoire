@@ -20,7 +20,7 @@ public class InteractableCandles : MonoBehaviour
     {
         print("bonked");
         InteractorElement interactor = other.gameObject.GetComponent<InteractorFire>();
-        if (interactor != null & lightable)
+        if (interactor != null & interactor.enabled & lightable)
         {
             print($"bonked interactor {interactor.Type}");
             light.enabled = /*!light.enabled;*/ true;
