@@ -576,7 +576,6 @@ MonoBehaviour:
   followSpeed: 5
   positionOffset: {x: -0.46, y: -0.26, z: 0.38}
   cameraTransform: {fileID: 0}
-  onlyYRotation: 0
   baseRotationOffset: {x: 0, y: 0, z: 90}
 --- !u!114 &2151051784579479282
 MonoBehaviour:
@@ -666,8 +665,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2249226, y: 0.1, z: 0.05}
-  m_Center: {x: 0.08699227, y: 0.039448686, z: -0.02}
+  m_Size: {x: 0.22492258, y: 0.06679014, z: 0.039758082}
+  m_Center: {x: 0.08699213, y: 0.04223626, z: -0.025121113}
 --- !u!54 &7581578036407829689
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -961,8 +960,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 0.01, z: 10}
-  m_Center: {x: -3.79, y: 0, z: 0}
+  m_Size: {x: 5.900122, y: 0.021928864, z: 11.860428}
+  m_Center: {x: -3.5655615, y: 0.0059644366, z: -0.13498817}
 --- !u!114 &8463089154797887571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1143,8 +1142,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 0.01, z: 10.000005}
-  m_Center: {x: 2.75, y: 0, z: 0}
+  m_Size: {x: 6.4249225, y: 0.020991486, z: 11.9829}
+  m_Center: {x: 3.048953, y: 0.005495683, z: -0.21190327}
 --- !u!114 &2857422522001453232
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2096,7 +2096,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3258415267726119379, guid: 11e015d8d3b01c44485649afa286b1c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.26
+      value: 3.844
       objectReference: {fileID: 0}
     - target: {fileID: 3258415267726119379, guid: 11e015d8d3b01c44485649afa286b1c8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3630,6 +3630,18 @@ PrefabInstance:
       propertyPath: m_InteractionLayers.m_Bits
       value: 2147483648
       objectReference: {fileID: 0}
+    - target: {fileID: 5724997894539814934, guid: a79dd8de713f9d9fbb49264e01848c3f, type: 3}
+      propertyPath: m_FarAttachMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5724997894539814934, guid: a79dd8de713f9d9fbb49264e01848c3f, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 1073741824
+      objectReference: {fileID: 0}
+    - target: {fileID: 5849627792721051544, guid: a79dd8de713f9d9fbb49264e01848c3f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6302174606614012776, guid: a79dd8de713f9d9fbb49264e01848c3f, type: 3}
       propertyPath: m_Name
       value: tutoLevel
@@ -3662,12 +3674,13 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 6320142726612071156, guid: a79dd8de713f9d9fbb49264e01848c3f, type: 3}
     - {fileID: 5904414772560420207, guid: a79dd8de713f9d9fbb49264e01848c3f, type: 3}
+    - {fileID: 984873856857718944, guid: a79dd8de713f9d9fbb49264e01848c3f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4366828687803791673, guid: a79dd8de713f9d9fbb49264e01848c3f, type: 3}
-      insertIndex: 9
+      insertIndex: 8
       addedObject: {fileID: 430957142}
     - targetCorrespondingSourceObject: {fileID: 4366828687803791673, guid: a79dd8de713f9d9fbb49264e01848c3f, type: 3}
-      insertIndex: 14
+      insertIndex: 13
       addedObject: {fileID: 249324642}
     - targetCorrespondingSourceObject: {fileID: 4366828687803791673, guid: a79dd8de713f9d9fbb49264e01848c3f, type: 3}
       insertIndex: -1
