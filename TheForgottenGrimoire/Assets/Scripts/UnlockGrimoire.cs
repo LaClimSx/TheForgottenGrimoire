@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class UnlockGrimoire : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    [SerializeField] private GameObject grim;
+    private void OnTriggerEnter(Collider other)
     {
-        GameObject.FindWithTag("grimoire").SetActive(true);
-        Destroy(gameObject);
+        if (other.CompareTag("Player"))
+        {
+            grim.SetActive(true);
+            Destroy(gameObject);
+        }        
     }
 }
