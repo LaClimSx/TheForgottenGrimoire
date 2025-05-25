@@ -33,6 +33,10 @@ public class level2Manager : MonoBehaviour
     private bool hasWon2 = false;
     private bool done = false;
 
+    [SerializeField] private GameObject endPortal;
+    [SerializeField] private GameObject unlockSpell1;
+    [SerializeField] private GameObject unlockSpell2;
+
     [SerializeField] private SpellManager spellManager;
 
 
@@ -55,6 +59,9 @@ public class level2Manager : MonoBehaviour
         {
             elecAudio.enabled = true;
             done = true;
+            endPortal.SetActive(true);
+            unlockSpell1.SetActive(true);
+            unlockSpell2.SetActive(true);
             return;
         }
         if (hasWon2)
@@ -118,8 +125,8 @@ public class level2Manager : MonoBehaviour
         hasWon2 = true;
         fanAnim.enabled = true;
         fanAudio.enabled = true;
-        spellManager.UnlockSpell(SpellType.ChargeShot);
-        spellManager.UnlockSpell(SpellType.ArcHands);
+        // spellManager.UnlockSpell(SpellType.ChargeShot);
+        // spellManager.UnlockSpell(SpellType.ArcHands);
     }
 
     private void ResetPuzzle1()
