@@ -10,7 +10,7 @@ public class PressurePlate : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("WeightedCube"))
+        if (other.gameObject.CompareTag("WeightedCube"))
         {
             print("pressed \n");
             isPressed = true;
@@ -19,7 +19,7 @@ public class PressurePlate : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("WeightedCube"))
+        if (other.gameObject.CompareTag("WeightedCube"))
         {
             print("unpressed \n");
             isPressed = false;
