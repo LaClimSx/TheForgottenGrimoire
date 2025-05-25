@@ -6094,9 +6094,17 @@ PrefabInstance:
       value: Level4
       objectReference: {fileID: 0}
     - target: {fileID: 2094816722909054797, guid: 4830386cff522854cb80ab72e4177d1f, type: 3}
+      propertyPath: m_FarAttachMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2094816722909054797, guid: 4830386cff522854cb80ab72e4177d1f, type: 3}
       propertyPath: m_AttachTransform
       value: 
       objectReference: {fileID: 417025849}
+    - target: {fileID: 2094816722909054797, guid: 4830386cff522854cb80ab72e4177d1f, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 1610612736
+      objectReference: {fileID: 0}
     - target: {fileID: 2094816722909054797, guid: 4830386cff522854cb80ab72e4177d1f, type: 3}
       propertyPath: m_SecondaryAttachTransform
       value: 
@@ -6234,9 +6242,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: c5e81c3f549b4a598ad4770f0bb9a20f, type: 2}
     - target: {fileID: 6645930762193179941, guid: 4830386cff522854cb80ab72e4177d1f, type: 3}
+      propertyPath: m_FarAttachMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6645930762193179941, guid: 4830386cff522854cb80ab72e4177d1f, type: 3}
       propertyPath: m_AttachTransform
       value: 
       objectReference: {fileID: 417025849}
+    - target: {fileID: 6645930762193179941, guid: 4830386cff522854cb80ab72e4177d1f, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 1610612736
+      objectReference: {fileID: 0}
     - target: {fileID: 6645930762193179941, guid: 4830386cff522854cb80ab72e4177d1f, type: 3}
       propertyPath: m_SecondaryAttachTransform
       value: 
