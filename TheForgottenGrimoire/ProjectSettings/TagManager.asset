@@ -23,6 +23,7 @@ TagManager:
   - Earthball
   - grimoire
   - palpatine
+  - WeightedCube
   layers:
   - Default
   - TransparentFX
