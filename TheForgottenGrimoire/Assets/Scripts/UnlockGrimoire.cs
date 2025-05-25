@@ -7,7 +7,7 @@ public class UnlockGrimoire : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            grim.SetActive(true);
+            grim.GetComponent<Grimoire>().enabled = true;
             Destroy(gameObject);
         }        
     }
