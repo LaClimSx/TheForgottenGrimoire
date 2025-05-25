@@ -5,148 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f91bc6f-9b43-45cf-986d-8e4920fb37ec" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/levelTeleportTest.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/levelTeleportTest.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Feet.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Feet.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Portal.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Portal.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PressurePlate.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PressurePlate.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/teleportPortal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/teleportPortal.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customMat/element/earthParticle.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customMat/element/earthParticle.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customMat/element/elecParticle.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customMat/element/elecParticle.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customMat/element/portalParticle.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customMat/element/portalParticle.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customMat/element/spaceParticle.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customMat/element/spaceParticle.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customMat/element/windParticle.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customMat/element/windParticle.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customMat/teleporterPortal.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customMat/teleporterPortal.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/CubeWithTP.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/CubeWithTP.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/PressurePlate.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/PressurePlate.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/level1/level1.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/level1/level1.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/castSucces.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/castSucces/earthSuccess.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/castSucces/earthSuccess.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/castSucces/elecSuccess.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/castSucces/elecSuccess.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/castSucces/fireSuccess.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/castSucces/fireSuccess.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/castSucces/spaceSucces.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/castSucces/spaceSucces.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/castSucces/windSuccess.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/castSucces/windSuccess.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/teleporter.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/customPrefabs/teleporter.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Materials.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Materials/big_fan.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Materials/big_fan.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Meshes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Meshes/fan2.FBX" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Meshes/fan2.FBX.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Meshes/fan2_shutter.FBX" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Meshes/fan2_shutter.FBX.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Prefabs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Prefabs/fan2.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Prefabs/fan2.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Prefabs/fan2_shutter.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Prefabs/fan2_shutter.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Textures.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Textures/vent_2_AlbedoTransparency.tga" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Textures/vent_2_AlbedoTransparency.tga.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Textures/vent_2_MetallicSmoothness.tga" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Textures/vent_2_MetallicSmoothness.tga.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Textures/vent_2_Normal.tga" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Assets/Textures/vent_2_Normal.tga.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Demo.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Demo/demo.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Demo/demo.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Demo/demo.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Demo/demo/LightingData.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Demo/demo/LightingData.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Demo/demo/ReflectionProbe-0.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Demo/demo/ReflectionProbe-0.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Demo/demoSettings.lighting" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan 2/Demo/demoSettings.lighting.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Materials.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Materials/Fence.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Materials/Fence.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Materials/fan.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Materials/fan.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Meshes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Meshes/Metro Fan.FBX" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Meshes/Metro Fan.FBX.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Prefabs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Prefabs/Metro Fan.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Prefabs/Metro Fan.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Textures.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Textures/fan_AlbedoTransparency.tga" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Textures/fan_AlbedoTransparency.tga.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Textures/fan_MetallicSmoothness.tga" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Textures/fan_MetallicSmoothness.tga.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Textures/fan_Normal.tga" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Textures/fan_Normal.tga.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Textures/fence.TGA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Assets/Textures/fence.TGA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Demo.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Demo/demo.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Demo/demo.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Demo/demo.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Demo/demo/LightingData.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Demo/demo/LightingData.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Demo/demo/ReflectionProbe-0.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Demo/demo/ReflectionProbe-0.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Demo/demoSettings.lighting" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/importedAssets/Fan/Demo/demoSettings.lighting.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/soundEffects.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/soundEffects/big-tesla-coil-sound-cut-71907.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/soundEffects/big-tesla-coil-sound-cut-71907.mp3.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/soundEffects/fire-sound-efftect-21991.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/soundEffects/fire-sound-efftect-21991.mp3.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/soundEffects/short-fire-whoosh_1-317280.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/soundEffects/short-fire-whoosh_1-317280.mp3.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/soundEffects/tornado-sound-29406.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/soundEffects/tornado-sound-29406.mp3.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TheForgottenGrimoire/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheForgottenGrimoire/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particles.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ElementInteractionDev.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ElementInteractionDev.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SpellCastingTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SpellCastingTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/InteractableCandles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/lvl1/InteractableCandles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/InteractableCandles.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/lvl1/InteractableCandles.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/lvl1/Managerlvl1candles2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/lvl1/Managerlvl1candles2.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/spell/CubeCompanion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/spell/CubeCompanion.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/spell/DrawSpell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/spell/DrawSpell.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/spell/FlammeThrowerProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/spell/FlammeThrowerProjectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/spell/HandJets.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/spell/HandJets.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/spell/HandJetsProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/spell/HandJetsProjectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/spell/ProjectileSpell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/spell/ProjectileSpell.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/spell/SpellManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/spell/SpellManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/spell/WindTunnel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/spell/WindTunnel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/spell/WindTunnelCollider.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/spell/WindTunnelCollider.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UnlockSpell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UnlockSpell.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/XRI/Settings/Resources/XRDeviceSimulatorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XRI/Settings/Resources/XRDeviceSimulatorSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/customMat/element/elec2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/customMat/element/elec2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/customPrefabs/Grimoire.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/customPrefabs/Grimoire.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/customPrefabs/XR Origin (XR Rig) Custom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/customPrefabs/XR Origin (XR Rig) Custom.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/customPrefabs/spells/ElecBall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/ElecBall.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/customPrefabs/spells/Fireball.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/Fireball.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/customPrefabs/spells/Palpatine.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/Palpatine.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/customPrefabs/spells/flammeThrower.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/flammeThrower.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/customPrefabs/spells/windTunnel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/customPrefabs/spells/windTunnel.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +44,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "tuto-level",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -261,6 +123,9 @@
       <workItem from="1747652298321" duration="2796000" />
       <workItem from="1747984828716" duration="2977000" />
       <workItem from="1748003356675" duration="4014000" />
+      <workItem from="1748068527334" duration="3000" />
+      <workItem from="1748068870061" duration="166000" />
+      <workItem from="1748175909792" duration="5539000" />
     </task>
     <servers />
   </component>
