@@ -56,12 +56,12 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private Transform hubTransform;
     [SerializeField] private Material defaultSkybox;
     [SerializeField] private const float smallDistanceTP = 5f;
-    [SerializeField] private const float largeDistanceTP = 10f;
+    [SerializeField] private float largeDistanceTP = 10f;
     [SerializeField] private XRRayInteractor xrRayInteractor;
 
     //Grab
     [SerializeField] private const float smallDistanceGrab = 5f;
-    [SerializeField] private const float largeDistanceGrab = 15f;
+    [SerializeField] private float largeDistanceGrab = 15f;
     [SerializeField] private CurveInteractionCaster curveInteractionCasterLeft;
     [SerializeField] private CurveInteractionCaster curveInteractionCasterRight;
     [SerializeField] private float spaceSpellDuration = 7f;

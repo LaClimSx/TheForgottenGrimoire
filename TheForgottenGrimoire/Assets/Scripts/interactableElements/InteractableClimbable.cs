@@ -6,7 +6,9 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class InteractableClimbable : InteractableElement
 {
     [SerializeField] private GameObject _handle;
-    [SerializeField] private float handleScale;
+    [SerializeField] private float handleScaleX;
+    [SerializeField] private float handleScaleY;
+    [SerializeField] private float handleScaleZ;
     [SerializeField] private GameObject _handles;
     private int handleCounter;
     private GameObject handles;
@@ -30,11 +32,11 @@ public class InteractableClimbable : InteractableElement
     private void createSingleHandle(Vector3 coord)
     {
         GameObject handle = Instantiate(_handle, coord, Quaternion.identity, handles.transform);
-        handle.transform.localScale = handle.transform.localScale * handleScale;
+        handle.transform.localScale = new Vector3(handle.transform.localScale.x * handleScaleX, handle.transform.localScale.y * handleScaleY, handle.transform.localScale.z * handleScaleZ);
         handle.name = "generated handle " + handleCounter++;
         ClimbInteractable cInteractable = handles.GetComponent<ClimbInteractable>();
         XRInteractionManager manager = cInteractable.interactionManager;
-        print("i manager: " + manager);
+        print("adding to climbing wall " + handle);
         cInteractable.colliders.Add(handle.GetComponent<Collider>());
         manager.UnregisterInteractable((IXRInteractable) cInteractable);
         manager.RegisterInteractable((IXRInteractable) cInteractable);
