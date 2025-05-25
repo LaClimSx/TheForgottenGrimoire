@@ -1354,6 +1354,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: level5
       objectReference: {fileID: 0}
+    - target: {fileID: 5488684893828707969, guid: c38c4328ddb712a498ced97e93fdb354, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 2147483648
+      objectReference: {fileID: 0}
     - target: {fileID: 7236895773792205086, guid: c38c4328ddb712a498ced97e93fdb354, type: 3}
       propertyPath: m_Colliders.Array.size
       value: 1
