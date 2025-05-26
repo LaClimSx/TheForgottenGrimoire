@@ -1,9 +1,9 @@
 # TheForgottenGrimoire
-* Trucs que je sais pas dans quelle catégorie ça va :
-    * Grimoire asset + script
 * Produced [scripts](https://github.com/LaClimSx/TheForgottenGrimoire/tree/main/TheForgottenGrimoire/Assets/Scripts) and assets: Created entirely by your team.
     * Staff asset
     * Grimoire pages
+    * Grimoire script to follow player
+    * Grimoire script to turn pages
     * Spell detection based on the drawing
     * All the spells and their interactions (interactor + interactable) :
         * Fire interactors (fire ball + flame thrower) can burn and destroy fire interactables, and light up designated items (candles...)
@@ -19,6 +19,7 @@
     * Most puzzle assets : torch, candles, lights... have extra scripts or elements for the puzzles, mostly to interact with the spells.
     * Pressure plates : based on [FistFullOfShrimp's buttons](https://www.youtube.com/watch?v=_pApJDiFxV4)
     * Drawing at a given position : based on [https://dineshpunni.notion.site/Drawing-in-XR-2a2b46869e6f46c589092045a86e8a0a](https://dineshpunni.notion.site/Drawing-in-XR-2a2b46869e6f46c589092045a86e8a0a)
+    * Grimoire asset : from [grimoire-style-book](https://assetstore.unity.com/packages/3d/props/grimoire-style-book-3996)
     * Visual assets : 
         * Level 4 : [https://assetstore.unity.com/packages/3d/props/industrial/abandoned-factory-lite-62597](https://assetstore.unity.com/packages/3d/props/industrial/abandoned-factory-lite-62597)
 * Unmodified scripts/assets: Used as-is.
